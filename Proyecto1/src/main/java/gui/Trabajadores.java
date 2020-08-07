@@ -5,6 +5,8 @@
  */
 package gui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jeffrey
@@ -76,6 +78,11 @@ public class Trabajadores extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Ingresar");
         jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(233, 150, 254));
 
@@ -151,6 +158,18 @@ public class Trabajadores extends javax.swing.JFrame {
     private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
         jPasswordField1.setText("");
     }//GEN-LAST:event_jPasswordField1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if ((!jTextField1.getText().equals("")) && (!jPasswordField1.getText().equals(""))) {
+            if ((jTextField1.getText().equals("Jeff")) && (jPasswordField1.getText().equals("1234"))) {
+                JOptionPane.showMessageDialog(null, "Ingreso correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Los campos deben ser llenados ");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
