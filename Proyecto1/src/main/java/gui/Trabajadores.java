@@ -49,7 +49,7 @@ public class Trabajadores extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoMorado.png"))); // NOI18N
 
         jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Kandira PERSONAL", 0, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jTextField1.setText("Usuario");
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(233, 150, 254), 3));
@@ -60,6 +60,7 @@ public class Trabajadores extends javax.swing.JFrame {
         });
 
         jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 12)); // NOI18N
         jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(233, 150, 254), 3));
@@ -74,7 +75,7 @@ public class Trabajadores extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(233, 150, 254));
-        jButton1.setFont(new java.awt.Font("Kandira PERSONAL", 0, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Ingresar");
         jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -162,7 +163,9 @@ public class Trabajadores extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if ((!jTextField1.getText().equals("")) && (!jPasswordField1.getText().equals(""))) {
             if ((jTextField1.getText().equals("Jeff")) && (jPasswordField1.getText().equals("1234"))) {
-                JOptionPane.showMessageDialog(null, "Ingreso correctamente");
+                MenuTrabajadores menu=new MenuTrabajadores();
+                menu.setVisible(true);
+                this.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Datos incorrectos");
             }
