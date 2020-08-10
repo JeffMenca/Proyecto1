@@ -2,6 +2,7 @@
 package backend;
 
 import gui.MainFrame;
+import gui.MenuTrabajadores;
 
 /**
  *
