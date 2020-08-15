@@ -16,6 +16,8 @@ public class ingresoUsuarios extends javax.swing.JFrame {
      */
     public ingresoUsuarios() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.pack();
     }
 
     /**
@@ -47,7 +49,6 @@ public class ingresoUsuarios extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
@@ -56,8 +57,8 @@ public class ingresoUsuarios extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
+        jTextField5 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
@@ -128,7 +129,7 @@ public class ingresoUsuarios extends javax.swing.JFrame {
         jTextField2.setBackground(new java.awt.Color(255, 255, 255));
         jTextField2.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 240, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 240, -1));
 
         jTextField7.setBackground(new java.awt.Color(255, 255, 255));
         jTextField7.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
@@ -174,11 +175,6 @@ public class ingresoUsuarios extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 51, 51));
         jLabel15.setText("*");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, 30, 30));
-
-        jFormattedTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        jPanel1.add(jFormattedTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 240, 30));
 
         jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
@@ -230,6 +226,11 @@ public class ingresoUsuarios extends javax.swing.JFrame {
         jButton1.setText("Ingresar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 110, 40));
+
+        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 240, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 630));
 
@@ -287,7 +288,6 @@ public class ingresoUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -311,6 +311,7 @@ public class ingresoUsuarios extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables

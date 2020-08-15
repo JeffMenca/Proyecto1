@@ -5,6 +5,8 @@
  */
 package gui;
 
+import forms.*;
+
 /**
  *
  * @author jeffrey
@@ -182,11 +184,13 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        ingresoTiempo ingresarTiempo=new ingresoTiempo();
+        ingresarTiempo.setVisible(true);
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        CargarArchivos archivos=new CargarArchivos();
+        CargarArchivos archivos = new CargarArchivos();
         archivos.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -195,7 +199,8 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        ingresoUsuarios ingresousuarios=new ingresoUsuarios();
+        ingresousuarios.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -203,7 +208,9 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        ingresoTiendas ingresarTienda = new ingresoTiendas();
+        ingresarTienda.setVisible(true);
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -211,7 +218,8 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        ingresoProductos ingresoproductos=new ingresoProductos();
+        ingresoproductos.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
