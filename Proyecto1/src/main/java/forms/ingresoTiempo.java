@@ -5,12 +5,18 @@
  */
 package forms;
 
+import DBsql.DbConnection;
+import static gui.MenuTrabajadores.nombre_tienda;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jeffrey
  */
 public class ingresoTiempo extends javax.swing.JFrame {
-
+    
+    public static String nombre_tienda;
     /**
      * Creates new form ingresoTiempo
      */
@@ -34,10 +40,19 @@ public class ingresoTiempo extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmTienda = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
+        jfTiempo = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,18 +73,24 @@ public class ingresoTiempo extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Tiempo");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+        jLabel13.setText("Tiempo (dias)");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 240, -1));
+        cmTienda.setBackground(new java.awt.Color(255, 255, 255));
+        cmTienda.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
+        jPanel1.add(cmTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 240, -1));
 
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ingresar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 110, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 110, 40));
 
         jPanel2.setBackground(new java.awt.Color(49, 255, 245));
 
@@ -86,10 +107,25 @@ public class ingresoTiempo extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 341, 512, -1));
 
-        jFormattedTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField4.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        jPanel1.add(jFormattedTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 240, 30));
+        jfTiempo.setBackground(new java.awt.Color(255, 255, 255));
+        jfTiempo.setForeground(new java.awt.Color(0, 0, 0));
+        jfTiempo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        jPanel1.add(jfTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 240, 30));
+
+        jLabel14.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel14.setText("*");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 30, 30));
+
+        jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel15.setText("*");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 30, 30));
+
+        jLabel10.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel10.setText("*=Obligatorio");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,6 +141,40 @@ public class ingresoTiempo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        String Query = "SELECT codigo FROM TIENDA";
+        DbConnection a = new DbConnection();
+        ResultSet Result = a.SelectOnComboBox(Query);
+        try {
+            while (Result.next()) {
+
+                if (!String.valueOf(Result.getObject("codigo")).equals(nombre_tienda)) {
+                    cmTienda.addItem(String.valueOf(Result.getObject("codigo")));
+                }
+            }
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_formComponentShown
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if ((cmTienda.getSelectedItem().toString().isEmpty())||(jfTiempo.getText().equals(""))) {
+            JOptionPane.showMessageDialog(null, "Faltan ingresar los datos obligatorios");
+        }
+        else{
+            int tiempo=Integer.valueOf(jfTiempo.getText());
+            String tienda_destino=cmTienda.getSelectedItem().toString();
+            String tienda_origen=nombre_tienda;
+            String query = ("INSERT INTO TIEMPO_ENTRE_TIENDAS VALUES('" + 0 + "','" + tiempo + "','" + tienda_destino + "','" + tienda_origen + "')");
+            DbConnection a = new DbConnection();
+            a.Insert(query);
+            JOptionPane.showMessageDialog(null, "Tiempo ingresado correctamente");
+            jfTiempo.setText("");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public void obtenerTiendaActual(String tienda){
+    nombre_tienda=tienda;
+    }
     /**
      * @param args the command line arguments
      */
@@ -141,14 +211,17 @@ public class ingresoTiempo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmTienda;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JFormattedTextField jfTiempo;
     // End of variables declaration//GEN-END:variables
 }

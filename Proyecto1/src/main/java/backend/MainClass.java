@@ -1,8 +1,8 @@
 
 package backend;
 
+import DBsql.DbConnection;
 import gui.MainFrame;
-import gui.MenuTrabajadores;
 
 /**
  *
@@ -11,7 +11,8 @@ import gui.MenuTrabajadores;
 public class MainClass {
      public static void main(String[] args) {
 
-        System.out.println("Bienvenido");
+        DbConnection conexion=new DbConnection();
+        conexion.conexionDB();
          MainFrame interfaz= new MainFrame();
          interfaz.setVisible(true);
         

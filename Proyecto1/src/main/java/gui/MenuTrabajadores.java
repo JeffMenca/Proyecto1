@@ -13,6 +13,7 @@ import forms.*;
  */
 public class MenuTrabajadores extends javax.swing.JFrame {
 
+    public static String nombre_tienda;
     /**
      * Creates new form MenuTrabajadores
      */
@@ -185,6 +186,7 @@ public class MenuTrabajadores extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         ingresoTiempo ingresarTiempo=new ingresoTiempo();
+        ingresarTiempo.obtenerTiendaActual(nombre_tienda);
         ingresarTiempo.setVisible(true);
         
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -219,13 +221,16 @@ public class MenuTrabajadores extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         ingresoProductos ingresoproductos=new ingresoProductos();
+        ingresoproductos.obtenerTiendaActual(nombre_tienda);
         ingresoproductos.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
-
+    public void obtenerTiendaActual(String tienda){
+    nombre_tienda=tienda;
+    }
     /**
      * @param args the command line arguments
      */

@@ -5,12 +5,16 @@
  */
 package forms;
 
+import DBsql.DbConnection;
+import static forms.ingresoTiempo.nombre_tienda;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jeffrey
  */
 public class ingresoProductos extends javax.swing.JFrame {
-
+    public static String nombre_tienda;
     /**
      * Creates new form ingresoProductos
      */
@@ -39,10 +43,10 @@ public class ingresoProductos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        tbnombre = new javax.swing.JTextField();
+        tbfabricante = new javax.swing.JTextField();
+        tbcodigo = new javax.swing.JTextField();
+        tbdescripcion = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -51,9 +55,9 @@ public class ingresoProductos extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
+        ftprecio = new javax.swing.JFormattedTextField();
+        ftgarantia = new javax.swing.JFormattedTextField();
+        ftcantidad = new javax.swing.JFormattedTextField();
 
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,30 +119,30 @@ public class ingresoProductos extends javax.swing.JFrame {
         jLabel8.setToolTipText("");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, -1, 30));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 240, -1));
+        tbnombre.setBackground(new java.awt.Color(255, 255, 255));
+        tbnombre.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbnombre.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 240, -1));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 240, -1));
+        tbfabricante.setBackground(new java.awt.Color(255, 255, 255));
+        tbfabricante.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbfabricante.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbfabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 240, -1));
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 240, -1));
+        tbcodigo.setBackground(new java.awt.Color(255, 255, 255));
+        tbcodigo.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbcodigo.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 240, -1));
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        tbdescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        tbdescripcion.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbdescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        tbdescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                tbdescripcionActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 240, -1));
+        jPanel1.add(tbdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 240, -1));
 
         jLabel9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -170,10 +174,16 @@ public class ingresoProductos extends javax.swing.JFrame {
         jLabel12.setText("Nombre");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ingresar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 110, 40));
 
         jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
@@ -181,20 +191,20 @@ public class ingresoProductos extends javax.swing.JFrame {
         jLabel15.setText("*");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 30, 30));
 
-        jFormattedTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jPanel1.add(jFormattedTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 240, 30));
+        ftprecio.setBackground(new java.awt.Color(255, 255, 255));
+        ftprecio.setForeground(new java.awt.Color(0, 0, 0));
+        ftprecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jPanel1.add(ftprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 240, 30));
 
-        jFormattedTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField4.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        jPanel1.add(jFormattedTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 240, 30));
+        ftgarantia.setBackground(new java.awt.Color(255, 255, 255));
+        ftgarantia.setForeground(new java.awt.Color(0, 0, 0));
+        ftgarantia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        jPanel1.add(ftgarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 240, 30));
 
-        jFormattedTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField5.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        jPanel1.add(jFormattedTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 240, 30));
+        ftcantidad.setBackground(new java.awt.Color(255, 255, 255));
+        ftcantidad.setForeground(new java.awt.Color(0, 0, 0));
+        ftcantidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        jPanel1.add(ftcantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 240, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,10 +222,48 @@ public class ingresoProductos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void tbdescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbdescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_tbdescripcionActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if ((tbcodigo.getText().equals(""))||(tbnombre.getText().equals(""))||(tbfabricante.getText().equals(""))||(ftcantidad.getText().equals(""))||(ftcantidad.getText().equals("0"))||(ftprecio.getText().equals(""))) {
+            JOptionPane.showMessageDialog(null, "Faltan ingresar los datos obligatorios");
+        }
+        else{
+            String codigo = tbcodigo.getText();
+            String nombre = tbnombre.getText();
+            String fabricante = tbfabricante.getText();
+            int cantidad = Integer.parseInt(ftcantidad.getText());
+            Double precio = Double.parseDouble(ftprecio.getText());
+            String descripcion = tbdescripcion.getText();
+            int garantia;
+            if (ftgarantia.getText().length() == 0) {
+                garantia = 0;
+            } else {
+                garantia = Integer.parseInt(ftgarantia.getText());
+            }
+            String codigo_tienda = nombre_tienda;
+            
+            String query = ("INSERT INTO PRODUCTO VALUES('" + codigo + "','" + nombre + "','" + fabricante + "','" + cantidad + "','" + precio + "','" + descripcion + "','" + garantia +"','" + codigo_tienda + "')");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                    JOptionPane.showMessageDialog(null, "Producto ingresado correctamente");
+            tbcodigo.setText("");
+            tbnombre.setText("");
+            tbfabricante.setText("");
+            ftcantidad.setText("");
+            ftprecio.setText("");
+            tbdescripcion.setText("");
+            ftgarantia.setText("");
+            
+            
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+     public void obtenerTiendaActual(String tienda){
+    nombre_tienda=tienda;
+    }
     /**
      * @param args the command line arguments
      */
@@ -252,10 +300,10 @@ public class ingresoProductos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField ftcantidad;
+    private javax.swing.JFormattedTextField ftgarantia;
+    private javax.swing.JFormattedTextField ftprecio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -273,9 +321,9 @@ public class ingresoProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField tbcodigo;
+    private javax.swing.JTextField tbdescripcion;
+    private javax.swing.JTextField tbfabricante;
+    private javax.swing.JTextField tbnombre;
     // End of variables declaration//GEN-END:variables
 }

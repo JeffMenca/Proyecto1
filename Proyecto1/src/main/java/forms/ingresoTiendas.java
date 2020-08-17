@@ -5,6 +5,11 @@
  */
 package forms;
 
+import DBsql.DbConnection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jeffrey
@@ -35,25 +40,25 @@ public class ingresoTiendas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        tbnombre = new javax.swing.JTextField();
+        tbdireccion = new javax.swing.JTextField();
+        tbtelefono2 = new javax.swing.JTextField();
+        tbcorreo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        tbhorario = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        tbtelefono1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tbcodigo = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
 
         jTextField5.setBackground(new java.awt.Color(255, 255, 255));
         jTextField5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
@@ -75,7 +80,7 @@ public class ingresoTiendas extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 558, 640, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 558, 650, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCeleste.png"))); // NOI18N
@@ -84,17 +89,12 @@ public class ingresoTiendas extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 51, 51));
         jLabel2.setText("*");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 20, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 20, 30));
 
         jLabel3.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Direccion");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, 30));
-
-        jLabel4.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Codigo");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, 30));
 
         jLabel5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,30 +119,35 @@ public class ingresoTiendas extends javax.swing.JFrame {
         jLabel8.setToolTipText("");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, -1, 30));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 240, -1));
+        tbnombre.setBackground(new java.awt.Color(255, 255, 255));
+        tbnombre.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbnombre.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 240, -1));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 240, -1));
+        tbdireccion.setBackground(new java.awt.Color(255, 255, 255));
+        tbdireccion.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbdireccion.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 240, -1));
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 240, -1));
-
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+        tbtelefono2.setBackground(new java.awt.Color(255, 255, 255));
+        tbtelefono2.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbtelefono2.setForeground(new java.awt.Color(0, 0, 0));
+        tbtelefono2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tbtelefono2KeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 240, -1));
+        jPanel1.add(tbtelefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 240, -1));
+
+        tbcorreo.setBackground(new java.awt.Color(255, 255, 255));
+        tbcorreo.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbcorreo.setForeground(new java.awt.Color(0, 0, 0));
+        tbcorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbcorreoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tbcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 240, -1));
 
         jLabel9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,49 +167,65 @@ public class ingresoTiendas extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 51, 51));
         jLabel13.setText("*");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 30, 30));
-
-        jLabel14.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel14.setText("*");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 30, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 30, 30));
 
         jLabel12.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Nombre");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        tbhorario.setBackground(new java.awt.Color(255, 255, 255));
+        tbhorario.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbhorario.setForeground(new java.awt.Color(0, 0, 0));
+        tbhorario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                tbhorarioActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 240, -1));
+        jPanel1.add(tbhorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 240, -1));
 
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ingresar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 110, 40));
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 240, -1));
+        tbtelefono1.setBackground(new java.awt.Color(255, 255, 255));
+        tbtelefono1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbtelefono1.setForeground(new java.awt.Color(0, 0, 0));
+        tbtelefono1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tbtelefono1KeyTyped(evt);
+            }
+        });
+        jPanel1.add(tbtelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 240, -1));
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 240, -1));
+        jLabel4.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Codigo");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, 40));
+
+        tbcodigo.setBackground(new java.awt.Color(255, 255, 255));
+        tbcodigo.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbcodigo.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 240, -1));
+
+        jLabel14.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel14.setText("*");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,13 +237,54 @@ public class ingresoTiendas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void tbcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbcorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_tbcorreoActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void tbhorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbhorarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_tbhorarioActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if ((tbcodigo.getText().equals(""))||(tbnombre.getText().equals(""))||(tbdireccion.getText().equals(""))||(tbtelefono1.getText().equals(""))) {
+            JOptionPane.showMessageDialog(null, "Faltan ingresar los datos obligatorios");
+        }
+        else{
+            String codigo=tbcodigo.getText();
+            String nombre=tbnombre.getText();
+            String direccion=tbdireccion.getText();
+            String telefono1=tbtelefono1.getText();
+            String telefono2=tbtelefono2.getText();
+            String correo=tbcorreo.getText();
+            String horario=tbhorario.getText();
+            
+            
+                String query = ("INSERT INTO TIENDA VALUES('"+codigo+"','"+nombre+"','"+direccion+"','"+telefono1+"','"+telefono2+"','"+correo+"','"+horario+"')");
+                DbConnection a = new DbConnection();
+                a.Insert(query);
+                JOptionPane.showMessageDialog(null, "Tienda ingresada correctamente");
+                tbcodigo.setText("");
+                tbnombre.setText("");
+                tbdireccion.setText("");
+                tbtelefono1.setText("");
+                tbtelefono2.setText("");
+                tbcorreo.setText("");
+                tbhorario.setText("");
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tbtelefono1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbtelefono1KeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if (tbtelefono1.getText().length()== 8) evt.consume();
+    }//GEN-LAST:event_tbtelefono1KeyTyped
+
+    private void tbtelefono2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbtelefono2KeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if (tbtelefono2.getText().length()== 8) evt.consume();
+    }//GEN-LAST:event_tbtelefono2KeyTyped
 
     /**
      * @param args the command line arguments
@@ -277,13 +339,13 @@ public class ingresoTiendas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField tbcodigo;
+    private javax.swing.JTextField tbcorreo;
+    private javax.swing.JTextField tbdireccion;
+    private javax.swing.JTextField tbhorario;
+    private javax.swing.JTextField tbnombre;
+    private javax.swing.JTextField tbtelefono1;
+    private javax.swing.JTextField tbtelefono2;
     // End of variables declaration//GEN-END:variables
 }
