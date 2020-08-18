@@ -12,7 +12,7 @@ public class MainClass {
      public static void main(String[] args) {
 
         DbConnection conexion=new DbConnection();
-        conexion.conexionDB();
+        conexion.connectionDB();
          MainFrame interfaz= new MainFrame();
          interfaz.setVisible(true);
         

@@ -5,20 +5,40 @@
  */
 package forms;
 
+import DBsql.DbConnection;
+import static forms.ingresoTiempo.nombre_tienda;
+import java.awt.event.KeyEvent;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jeffrey
  */
 public class ingresoVentas extends javax.swing.JFrame {
-
+    public static String nombre_tienda;
+    public DefaultTableModel modelcarrito = new DefaultTableModel();
+    public String nit="";
+    public LocalDate fecha = LocalDate.now();
+    
+    
     /**
-     * Creates new form ingresoVentas
+     * Creates new form ingresoPedidos
      */
     public ingresoVentas() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.pack();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,83 +49,33 @@ public class ingresoVentas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField7 = new javax.swing.JFormattedTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        tbCantidad = new javax.swing.JFormattedTextField();
+        lbtotal = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        tbNIT = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tbProducto = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tProducto = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tclientes = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jLabel12 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel17 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-
-        jLabel7.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Cantidad");
-
-        jFormattedTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-
-        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
-
-        jLabel14.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Tienda de destino");
-
-        jComboBox4.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox4.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
-
-        jLabel16.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Tienda de destino");
-
-        jLabel3.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel3.setText("*");
-
-        jLabel11.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel11.setText("*");
-
-        jLabel19.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel19.setText("*");
-
-        jLabel21.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel21.setText("*");
-
-        jLabel24.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel24.setText("*");
+        tcarrito = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -127,104 +97,417 @@ public class ingresoVentas extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCeleste.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 310, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 310, -1));
 
         jLabel9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Pedidos");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+        jLabel9.setText("Ventas");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
 
-        jFormattedTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField5.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        jPanel1.add(jFormattedTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 50, 30));
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Agregar el carrito");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 190, 40));
 
-        jLabel5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("100.00");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, -1, 30));
+        tbCantidad.setBackground(new java.awt.Color(255, 255, 255));
+        tbCantidad.setForeground(new java.awt.Color(0, 0, 0));
+        tbCantidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        jPanel1.add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 50, 30));
 
+        lbtotal.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        lbtotal.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lbtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, -1, 30));
+
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
         jButton2.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Pedir articulo");
+        jButton2.setText("Comprar articulos");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 590, 170, 40));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 580, 170, 40));
 
         jLabel6.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cantidad");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Total: ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 530, -1, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, -1, 30));
 
         jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("NIT ");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 310, -1));
-
-        jList3.setBackground(new java.awt.Color(255, 255, 255));
-        jList3.setForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane3.setViewportView(jList3);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 310, 50));
+        tbNIT.setBackground(new java.awt.Color(255, 255, 255));
+        tbNIT.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbNIT.setForeground(new java.awt.Color(0, 0, 0));
+        tbNIT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbNITKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tbNITKeyTyped(evt);
+            }
+        });
+        jPanel1.add(tbNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 320, -1));
 
         jLabel13.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Producto");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 170, -1));
+        tbProducto.setBackground(new java.awt.Color(255, 255, 255));
+        tbProducto.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
+        tbProducto.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 170, -1));
 
-        jList2.setBackground(new java.awt.Color(255, 255, 255));
-        jList2.setForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane2.setViewportView(jList2);
+        tProducto.setBackground(new java.awt.Color(255, 255, 255));
+        tProducto.setForeground(new java.awt.Color(0, 0, 0));
+        tProducto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Codigo", "Nombre", "Precio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 320, 130));
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-        jLabel12.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Tienda");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tProducto);
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 320, -1));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 320, 130));
 
-        jLabel17.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Anticipo");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, -1, -1));
+        tclientes.setBackground(new java.awt.Color(255, 255, 255));
+        tclientes.setForeground(new java.awt.Color(0, 0, 0));
+        tclientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "NIT", "Nombre"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 60, -1));
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tclientes);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 320, 80));
+
+        tcarrito.setBackground(new java.awt.Color(255, 255, 255));
+        tcarrito.setForeground(new java.awt.Color(0, 0, 0));
+        tcarrito.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cantidad", "Codigo", "Producto", "Precio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tcarrito);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 180, 320, 320));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 782, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        cargarTabla1();
+        cargarTabla2();
+        listenerTBnit();
+        listenerTBproducto();
+        modelcarrito.addColumn("Cantidad");
+        modelcarrito.addColumn("Codigo");
+        modelcarrito.addColumn("Producto");
+        modelcarrito.addColumn("Precio");
+    }//GEN-LAST:event_formComponentShown
+
+    private void tbNITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbNITKeyTyped
+        
+    }//GEN-LAST:event_tbNITKeyTyped
+
+    private void tbNITKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbNITKeyPressed
+        
+    }//GEN-LAST:event_tbNITKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            int column = 0;
+            int row = tclientes.getSelectedRow();
+            nit = tclientes.getModel().getValueAt(row, column).toString();
+            
+                if (!tbCantidad.getText().equals("")&&(!nit.equals(""))) {
+                    tclientes.setEnabled(false);
+                    column = 0;
+                    row = tProducto.getSelectedRow();
+                    String value3 = tProducto.getModel().getValueAt(row, column).toString();
+                    column = 1;
+                    row = tProducto.getSelectedRow();
+                    String value = tProducto.getModel().getValueAt(row, column).toString();
+                    column = 2;
+                    String value2 = tProducto.getModel().getValueAt(row, column).toString();
+                    tcarrito.setModel(modelcarrito);
+                    modelcarrito.addRow(new Object[]{tbCantidad.getText(),value3, value, value2});
+                    sumartotal();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar la cantidad que desea del producto");
+                }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un NIT/Cliente");
+        }
+        
+       
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (tcarrito.getRowCount()>0) {
+            
+            Double total= Double.parseDouble(lbtotal.getText());
+            
+                String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+fecha+"','"+total+"','"+nit+"','"+nombre_tienda+"')");
+                DbConnection a = new DbConnection();
+                int codigofactura=a.InsertVenta(query);
+              JOptionPane.showMessageDialog(null, "Se realizo su compra y su factura correctamente");
+            for (int i = 0; i < tcarrito.getRowCount(); i++) {
+                int row = i;
+                int cantidad= Integer.parseInt(tcarrito.getModel().getValueAt(row, 0).toString());
+                Double precio= Double.parseDouble(tcarrito.getModel().getValueAt(row, 3).toString());
+                String codigoproducto= tcarrito.getModel().getValueAt(row, 1).toString();
+                query = ("INSERT INTO VENTA VALUES('"+0+"','"+cantidad+"','"+precio+"','"+codigoproducto+"','"+codigofactura+"')");
+                a = new DbConnection();
+                a.Insert(query);
+            }
+                
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Debe ingresar por lo menos un producto");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+    public void obtenerTiendaActual(String tienda) {
+        nombre_tienda = tienda;
+        
+    }
+    public void sumartotal(){
+        double t=0;
+        double p=0;
+        int rowscount=tcarrito.getRowCount();
+        if (tcarrito.getRowCount() > 0) {
+            for (int i = 0; i < rowscount; i++) {
+                p=Double.parseDouble(tcarrito.getValueAt(i, 3).toString());
+                p*=Double.parseDouble(tcarrito.getValueAt(i, 0).toString());
+                t+=p;
+            }
+        }
+        lbtotal.setText(String.valueOf(t));
+        
+    }
+    public void cargarTabla1(){
+        String filter=tbNIT.getText();
+        String where="";
+        if (!filter.equals("")) {
+            where=" WHERE NIT LIKE '%"+filter+"%'";
+        }
+        else{
+           where=""; 
+        }
+        DefaultTableModel model=new DefaultTableModel();
+        tclientes.setModel(model);
+        String Query = "SELECT NIT, nombre FROM CLIENTE"+ where;
+        DbConnection a = new DbConnection(); 
+        ResultSet Result = a.SelectOnComboBox(Query);
+ 
+        try {
+            ResultSetMetaData ResultMd = Result.getMetaData();
+            int columnscount = ResultMd.getColumnCount();
+            model.addColumn("NIT");
+            model.addColumn("Nombre");
+            while (Result.next()) {
+                Object[] rows = new Object[columnscount];
+                for (int i = 0; i < columnscount; i++) {
+                    rows[i] = Result.getObject(i + 1);
+                }
+                model.addRow(rows);
+
+            }
+
+        } catch (Exception e) {
+        }
+    }
+    public void cargarTabla2(){
+        String filter=tbProducto.getText();
+        String where="";
+        if (!filter.equals("")) {
+            where=" WHERE codigo_tienda= '"+nombre_tienda+"' && nombre LIKE '%"+filter+"%'";
+        }
+        else{
+           where=" WHERE codigo_tienda= '"+nombre_tienda+"'"; 
+        }
+        DefaultTableModel model=new DefaultTableModel();
+        tProducto.setModel(model);
+        String Query = "SELECT codigo, nombre, precio FROM PRODUCTO"+ where;
+        DbConnection a = new DbConnection(); 
+        ResultSet Result = a.SelectOnComboBox(Query);
+ 
+        try {
+            ResultSetMetaData ResultMd = Result.getMetaData();
+            int columnscount = ResultMd.getColumnCount();
+            model.addColumn("Codigo");
+            model.addColumn("Nombre");
+             model.addColumn("Precio");
+            while (Result.next()) {
+                Object[] rows = new Object[columnscount];
+                for (int i = 0; i < columnscount; i++) {
+                    rows[i] = Result.getObject(i + 1);
+                }
+                model.addRow(rows);
+
+            }
+
+        } catch (Exception e) {
+        }
+    }
+
+    public void listenerTBnit(){
+        tbNIT.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent de) {
+               cargarTabla1();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent de) {
+                cargarTabla1();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent de) {
+                cargarTabla1();
+            }
+        });
+    }
+    public void listenerTBproducto(){
+        tbProducto.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent de) {
+               cargarTabla2();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent de) {
+                cargarTabla2();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent de) {
+                cargarTabla2();
+            }
+        });
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -251,6 +534,7 @@ public class ingresoVentas extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ingresoVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -261,38 +545,25 @@ public class ingresoVentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
-    private javax.swing.JFormattedTextField jFormattedTextField7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel lbtotal;
+    private javax.swing.JTable tProducto;
+    private javax.swing.JFormattedTextField tbCantidad;
+    private javax.swing.JTextField tbNIT;
+    private javax.swing.JTextField tbProducto;
+    private javax.swing.JTable tcarrito;
+    private javax.swing.JTable tclientes;
     // End of variables declaration//GEN-END:variables
 }
