@@ -69,6 +69,7 @@ public class ingresoVentas extends javax.swing.JFrame {
         tclientes = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tcarrito = new javax.swing.JTable();
+        cbPagarCredito = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -135,7 +136,7 @@ public class ingresoVentas extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 580, 170, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, 170, 40));
 
         jLabel6.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,23 +180,23 @@ public class ingresoVentas extends javax.swing.JFrame {
         tProducto.setForeground(new java.awt.Color(0, 0, 0));
         tProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Precio"
+                "Codigo", "Nombre", "Precio", "Cantidad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -214,20 +215,20 @@ public class ingresoVentas extends javax.swing.JFrame {
         tclientes.setForeground(new java.awt.Color(0, 0, 0));
         tclientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "NIT", "Nombre"
+                "NIT", "Nombre", "Credito"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -295,6 +296,17 @@ public class ingresoVentas extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 180, 320, 320));
 
+        cbPagarCredito.setBackground(new java.awt.Color(51, 51, 51));
+        cbPagarCredito.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
+        cbPagarCredito.setForeground(new java.awt.Color(255, 255, 255));
+        cbPagarCredito.setText("Pagar con credito");
+        cbPagarCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPagarCreditoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbPagarCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 550, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -316,6 +328,12 @@ public class ingresoVentas extends javax.swing.JFrame {
         cargarTabla2();
         listenerTBnit();
         listenerTBproducto();
+        modelcarrito=new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
         modelcarrito.addColumn("Cantidad");
         modelcarrito.addColumn("Codigo");
         modelcarrito.addColumn("Producto");
@@ -337,18 +355,36 @@ public class ingresoVentas extends javax.swing.JFrame {
             nit = tclientes.getModel().getValueAt(row, column).toString();
             
                 if (!tbCantidad.getText().equals("")&&(!nit.equals(""))) {
-                    tclientes.setEnabled(false);
-                    column = 0;
+                    column = 3;
                     row = tProducto.getSelectedRow();
-                    String value3 = tProducto.getModel().getValueAt(row, column).toString();
-                    column = 1;
-                    row = tProducto.getSelectedRow();
-                    String value = tProducto.getModel().getValueAt(row, column).toString();
-                    column = 2;
-                    String value2 = tProducto.getModel().getValueAt(row, column).toString();
-                    tcarrito.setModel(modelcarrito);
-                    modelcarrito.addRow(new Object[]{tbCantidad.getText(),value3, value, value2});
-                    sumartotal();
+                    int cantidadProductos =Integer.parseInt(tProducto.getModel().getValueAt(row, column).toString());
+                    int cantidadpedida=Integer.parseInt(tbCantidad.getText());
+                    if ((cantidadProductos > 0)&&(cantidadpedida<=cantidadProductos)) {
+                        tclientes.setEnabled(false);
+                        column = 0;
+                        row = tProducto.getSelectedRow();
+                        String value3 = tProducto.getModel().getValueAt(row, column).toString();
+                        column = 1;
+                        row = tProducto.getSelectedRow();
+                        String value = tProducto.getModel().getValueAt(row, column).toString();
+                        column = 2;
+                        String value2 = tProducto.getModel().getValueAt(row, column).toString();
+                        tcarrito.setModel(modelcarrito);
+                        modelcarrito.addRow(new Object[]{tbCantidad.getText(), value3, value, value2});
+                        sumartotal();
+                        column = 0;
+                        row = tProducto.getSelectedRow();
+                        String codigoProductoAgregado = tProducto.getModel().getValueAt(row, column).toString();
+                        cantidadProductos-=cantidadpedida;
+                        String query = ("UPDATE PRODUCTO SET cantidad = '"+cantidadProductos+"' WHERE codigo='"+codigoProductoAgregado+"'");
+                        DbConnection a = new DbConnection();
+                        a.Insert(query);
+                        cargarTabla2();
+                    }
+                    else {
+                    JOptionPane.showMessageDialog(null, "El producto no esta en existencia, debe realizar un pedido");
+                }
+
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar la cantidad que desea del producto");
@@ -363,22 +399,57 @@ public class ingresoVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        
         if (tcarrito.getRowCount()>0) {
-            
+            int row;
             Double total= Double.parseDouble(lbtotal.getText());
+            if (cbPagarCredito.isSelected()==true) {
+                row = tclientes.getSelectedRow();
+                Double credito = Double.parseDouble(tclientes.getModel().getValueAt(row, 2).toString());
+                if (credito>=total) {
+                    credito-=total;
+                    String query = ("UPDATE CLIENTE SET credito = '" + credito + "' WHERE NIT='" + nit + "'");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                }
+                else{
+                    Double totalNuevo=total-credito;
+                    credito=0.00;
+                    JOptionPane.showMessageDialog(null, "Su credito no es suficiente, debera pagar en efectivo "+totalNuevo);
+                    String query = ("UPDATE CLIENTE SET credito = '" + credito + "' WHERE NIT='" + nit + "'");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                }
+            }
             
                 String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+fecha+"','"+total+"','"+nit+"','"+nombre_tienda+"')");
                 DbConnection a = new DbConnection();
                 int codigofactura=a.InsertVenta(query);
               JOptionPane.showMessageDialog(null, "Se realizo su compra y su factura correctamente");
+              cargarTabla1();
+              tclientes.setEnabled(true);
+              modelcarrito = new DefaultTableModel();
+              modelcarrito = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            modelcarrito.addColumn("Cantidad");
+            modelcarrito.addColumn("Codigo");
+            modelcarrito.addColumn("Producto");
+            modelcarrito.addColumn("Precio");
+            tcarrito.setModel(modelcarrito);
             for (int i = 0; i < tcarrito.getRowCount(); i++) {
-                int row = i;
+                row = i;
                 int cantidad= Integer.parseInt(tcarrito.getModel().getValueAt(row, 0).toString());
                 Double precio= Double.parseDouble(tcarrito.getModel().getValueAt(row, 3).toString());
                 String codigoproducto= tcarrito.getModel().getValueAt(row, 1).toString();
                 query = ("INSERT INTO VENTA VALUES('"+0+"','"+cantidad+"','"+precio+"','"+codigoproducto+"','"+codigofactura+"')");
                 a = new DbConnection();
                 a.Insert(query);
+                
             }
                 
         }
@@ -386,6 +457,10 @@ public class ingresoVentas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar por lo menos un producto");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cbPagarCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPagarCreditoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPagarCreditoActionPerformed
     public void obtenerTiendaActual(String tienda) {
         nombre_tienda = tienda;
         
@@ -414,8 +489,14 @@ public class ingresoVentas extends javax.swing.JFrame {
            where=""; 
         }
         DefaultTableModel model=new DefaultTableModel();
+        model=new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
         tclientes.setModel(model);
-        String Query = "SELECT NIT, nombre FROM CLIENTE"+ where;
+        String Query = "SELECT NIT, nombre, credito FROM CLIENTE"+ where;
         DbConnection a = new DbConnection(); 
         ResultSet Result = a.SelectOnComboBox(Query);
  
@@ -424,6 +505,7 @@ public class ingresoVentas extends javax.swing.JFrame {
             int columnscount = ResultMd.getColumnCount();
             model.addColumn("NIT");
             model.addColumn("Nombre");
+            model.addColumn("Credito");
             while (Result.next()) {
                 Object[] rows = new Object[columnscount];
                 for (int i = 0; i < columnscount; i++) {
@@ -446,8 +528,14 @@ public class ingresoVentas extends javax.swing.JFrame {
            where=" WHERE codigo_tienda= '"+nombre_tienda+"'"; 
         }
         DefaultTableModel model=new DefaultTableModel();
+        model= new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
         tProducto.setModel(model);
-        String Query = "SELECT codigo, nombre, precio FROM PRODUCTO"+ where;
+        String Query = "SELECT codigo, nombre, precio, cantidad FROM PRODUCTO"+ where;
         DbConnection a = new DbConnection(); 
         ResultSet Result = a.SelectOnComboBox(Query);
  
@@ -456,7 +544,8 @@ public class ingresoVentas extends javax.swing.JFrame {
             int columnscount = ResultMd.getColumnCount();
             model.addColumn("Codigo");
             model.addColumn("Nombre");
-             model.addColumn("Precio");
+            model.addColumn("Precio");
+            model.addColumn("Cantidad");
             while (Result.next()) {
                 Object[] rows = new Object[columnscount];
                 for (int i = 0; i < columnscount; i++) {
@@ -545,6 +634,7 @@ public class ingresoVentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox cbPagarCredito;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

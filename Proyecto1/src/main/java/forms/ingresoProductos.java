@@ -227,7 +227,7 @@ public class ingresoProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_tbdescripcionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if ((tbcodigo.getText().equals(""))||(tbnombre.getText().equals(""))||(tbfabricante.getText().equals(""))||(ftcantidad.getText().equals(""))||(ftcantidad.getText().equals("0"))||(ftprecio.getText().equals(""))) {
+        if ((tbcodigo.getText().equals(""))||(tbnombre.getText().equals(""))||(tbfabricante.getText().equals(""))||(ftcantidad.getText().equals(""))||(ftprecio.getText().equals(""))) {
             JOptionPane.showMessageDialog(null, "Faltan ingresar los datos obligatorios");
         }
         else{

@@ -47,6 +47,7 @@ public class DbConnection {
             Statement stmt=null;
             stmt = getConnection().createStatement();
             stmt.executeUpdate(query);
+            stmt.close();
             disconnectDB();
         } catch (SQLException e) {
              if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
@@ -91,13 +92,14 @@ public class DbConnection {
             stmt = getConnection().createStatement();
             ResultSet resultado = stmt.executeQuery(query);
             return resultado;
+            
         } catch (Exception e) {
             return null;
-            
+
         }
     }
-    
-    public ResultSet SelectOnTable(String query){
+
+    public ResultSet SelectOnTable(String query) {
         Statement stmt = null;
         try {
             connectionDB();
