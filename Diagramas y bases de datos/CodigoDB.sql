@@ -18,7 +18,9 @@ tiempo INT NOT NULL,
 tienda_destino VARCHAR(45) NOT NULL,
 tienda_origen VARCHAR(45) NOT NULL,
 PRIMARY KEY(ID),
-FOREIGN KEY(tienda_origen) REFERENCES TIENDA(codigo)
+FOREIGN KEY(tienda_origen) REFERENCES TIENDA(codigo),
+FOREIGN KEY(tienda_destino) REFERENCES TIENDA(codigo),
+CONSTRAINT tiemporegistrado UNIQUE (tienda_destino,tienda_origen)
 );
 
 CREATE TABLE IF NOT EXISTS EMPLEADO(
@@ -86,13 +88,13 @@ total DOUBLE NOT NULL,
 anticipo DOUBLE NOT NULL,
 codigo_producto VARCHAR(45) NOT NULL,
 codigo_cliente VARCHAR(13) NOT NULL,
-codigo_tienda VARCHAR(45) NOT NULL,
-tiempo_envio INT NOT NULL,
+codigo_tiendaorigen VARCHAR(45) NOT NULL,
+codigo_tiendadestino VARCHAR(45) NOT NULL,
 PRIMARY KEY(codigo),
 FOREIGN KEY(codigo_producto) REFERENCES PRODUCTO(codigo),
 FOREIGN KEY(codigo_cliente) REFERENCES CLIENTE(NIT),
-FOREIGN KEY(codigo_tienda) REFERENCES TIENDA(codigo),
-FOREIGN KEY(tiempo_envio) REFERENCES TIEMPO_ENTRE_TIENDAS(ID)
+FOREIGN KEY(codigo_tiendaorigen) REFERENCES TIENDA(codigo),
+FOREIGN KEY(codigo_tiendadestino) REFERENCES TIENDA(codigo)
 );
 
 CREATE TABLE IF NOT EXISTS RECIBO(
@@ -100,7 +102,9 @@ ID INT NOT NULL AUTO_INCREMENT,
 fecha_ingreso DATE NOT NULL,
 codigo_tienda VARCHAR(45) NOT NULL,
 codigo_pedido INT NOT NULL,
+tiempo_envio INT NOT NULL,
 PRIMARY KEY(ID),
 FOREIGN KEY(codigo_tienda) REFERENCES TIENDA(codigo),
-FOREIGN KEY(codigo_pedido) REFERENCES PEDIDO(codigo)
+FOREIGN KEY(codigo_pedido) REFERENCES PEDIDO(codigo),
+FOREIGN KEY(tiempo_envio) REFERENCES TIEMPO_ENTRE_TIENDAS(ID)
 );

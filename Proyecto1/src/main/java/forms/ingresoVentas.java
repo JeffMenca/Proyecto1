@@ -115,12 +115,12 @@ public class ingresoVentas extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 190, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 540, 190, 40));
 
         tbCantidad.setBackground(new java.awt.Color(255, 255, 255));
         tbCantidad.setForeground(new java.awt.Color(0, 0, 0));
         tbCantidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        jPanel1.add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 50, 30));
+        jPanel1.add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 50, 30));
 
         lbtotal.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         lbtotal.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,7 +141,7 @@ public class ingresoVentas extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cantidad");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, -1, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,7 +151,7 @@ public class ingresoVentas extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("NIT ");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
         tbNIT.setBackground(new java.awt.Color(255, 255, 255));
         tbNIT.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
@@ -164,17 +164,17 @@ public class ingresoVentas extends javax.swing.JFrame {
                 tbNITKeyTyped(evt);
             }
         });
-        jPanel1.add(tbNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 320, -1));
+        jPanel1.add(tbNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 320, -1));
 
         jLabel13.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Producto");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
         tbProducto.setBackground(new java.awt.Color(255, 255, 255));
         tbProducto.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
         tbProducto.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(tbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 170, -1));
+        jPanel1.add(tbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 170, -1));
 
         tProducto.setBackground(new java.awt.Color(255, 255, 255));
         tProducto.setForeground(new java.awt.Color(0, 0, 0));
@@ -209,7 +209,7 @@ public class ingresoVentas extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(tProducto);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 320, 130));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 320, 130));
 
         tclientes.setBackground(new java.awt.Color(255, 255, 255));
         tclientes.setForeground(new java.awt.Color(0, 0, 0));
@@ -241,7 +241,7 @@ public class ingresoVentas extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tclientes);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 320, 80));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 320, 80));
 
         tcarrito.setBackground(new java.awt.Color(255, 255, 255));
         tcarrito.setForeground(new java.awt.Color(0, 0, 0));
@@ -294,7 +294,7 @@ public class ingresoVentas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tcarrito);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 180, 320, 320));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 320, 320));
 
         cbPagarCredito.setBackground(new java.awt.Color(51, 51, 51));
         cbPagarCredito.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N

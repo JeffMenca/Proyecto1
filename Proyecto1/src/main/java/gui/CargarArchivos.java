@@ -1,10 +1,14 @@
 package gui;
 
+import DBsql.DbConnection;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -15,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class CargarArchivos extends javax.swing.JFrame {
     
-    public static String [] datos = new String [200];
+    public static String [] datos = new String [25];
     public static File txt;
     /**
      * Creates new form CargarArchivos
@@ -51,6 +55,7 @@ public class CargarArchivos extends javax.swing.JFrame {
                 formComponentShown(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -113,23 +118,14 @@ public class CargarArchivos extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 406, 713, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 406, 670, -1));
 
         jLabel9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Cargar informacion");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -203,12 +199,16 @@ public class CargarArchivos extends javax.swing.JFrame {
         int contadorDeDatos = 0;
         FileReader f = new FileReader(txt);
         BufferedReader b = new BufferedReader(f);
+        for (int i = 0; i < datos.length; i++) {
+                datos[i] = "";
+            }
         while ((frasePorDividir = b.readLine()) != null) {
+            
             char[] fraseDividida = frasePorDividir.toCharArray();
             for (int i = 0; i < fraseDividida.length; i++) {
                 if (fraseDividida[i] == 44) {
                     datos[contadorDeDatos] = frase;
-                    JOptionPane.showMessageDialog(null, datos[contadorDeDatos]);
+                    //JOptionPane.showMessageDialog(null, datos[contadorDeDatos]);
                     contadorDeDatos++;
                     frase = "";
                 } else {
@@ -216,10 +216,71 @@ public class CargarArchivos extends javax.swing.JFrame {
                 }
             }
             datos[contadorDeDatos] = frase;
-            JOptionPane.showMessageDialog(null, datos[contadorDeDatos]);
-            contadorDeDatos++;
+            //JOptionPane.showMessageDialog(null, datos[contadorDeDatos]);
+            ComprobarTipoDeDato();
             frase = "";
+            contadorDeDatos=0;
         }
+    }
+   
+    public static void ComprobarTipoDeDato(){
+        
+        switch (datos[0]) {
+            case "TIENDA":
+                {
+                    String query = ("INSERT INTO TIENDA VALUES('"+datos[3]+"','"+datos[1]+"','"+datos[4]+"','"+datos[2]+"','"+datos[5]+"','"+datos[6]+"','"+datos[7]+"')");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                    JOptionPane.showMessageDialog(null, "SE CREO TIENDA");
+                    break;
+                }
+            case "TIEMPO":
+                {
+                    String query = ("INSERT INTO TIEMPO_ENTRE_TIENDAS VALUES('"+0+"','"+Integer.parseInt(datos[3])+"','"+datos[2]+"','"+datos[1]+"')");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                    JOptionPane.showMessageDialog(null, "SE CREO TIEMPO");
+                    break;
+                }
+            case "PRODUCTO":
+                {
+                    String query = ("INSERT INTO PRODUCTO VALUES('"+datos[3]+"','"+datos[1]+"','"+datos[2]+"','"+Integer.parseInt(datos[4])+"','"+Double.parseDouble(datos[5])+"','"+datos[7]+"','"+0+"','"+datos[6]+"')");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                    JOptionPane.showMessageDialog(null, "SE CREO PRODUCTO");
+                    break;
+                }
+            case "CLIENTE":
+                {
+                    String query = ("INSERT INTO CLIENTE VALUES('"+datos[2]+"','"+datos[1]+"','"+datos[3]+"','"+datos[5]+"','"+Double.parseDouble(datos[4])+"','"+datos[6]+"','"+datos[7]+"')");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                    JOptionPane.showMessageDialog(null, "SE CREO CLIENTE");
+                    break;
+                }
+            case "EMPLEADO":
+                {
+                    String query = ("INSERT INTO EMPLEADO VALUES('"+datos[2]+"','"+datos[1]+"','"+datos[3]+"','"+datos[5]+"','"+datos[4]+"','"+datos[6]+"','"+datos[7]+"')");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                    JOptionPane.showMessageDialog(null, "SE CREO EMPLEADO");
+                    break;
+                }
+            case "PEDIDO":
+                {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String date = datos[4];
+                    LocalDate fecha = LocalDate.parse(date, formatter);
+                    String query = ("INSERT INTO PEDIDO VALUES('"+0+"','"+fecha+"','"+Integer.parseInt(datos[7])+"','"+Double.parseDouble(datos[8])+"','"+Double.parseDouble(datos[9])+"','"+datos[6]+"','"+datos[5]+"','"+datos[2]+"','"+datos[3]+"')");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                    JOptionPane.showMessageDialog(null, "SE CREO PEDIDO");
+                    break;
+                }
+            default:
+                break;
+        }
+        
     }
     
 
