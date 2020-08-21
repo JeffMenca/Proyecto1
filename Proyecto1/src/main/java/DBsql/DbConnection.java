@@ -51,7 +51,7 @@ public class DbConnection {
             disconnectDB();
         } catch (SQLException e) {
              if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
-                 JOptionPane.showMessageDialog(null,"Error el ID o codigo ya existe");
+                 JOptionPane.showMessageDialog(null,"Error el ID o codigo ya existe, o ingreso de manera incorrecta un dato");
              }else{
              JOptionPane.showMessageDialog(null,e);
              }
@@ -85,6 +85,20 @@ public class DbConnection {
     }
 
     public ResultSet SelectOnComboBox(String query){
+        Statement stmt = null;
+        try {
+            connectionDB();
+            stmt = null;
+            stmt = getConnection().createStatement();
+            ResultSet resultado = stmt.executeQuery(query);
+            return resultado;
+            
+        } catch (Exception e) {
+            return null;
+
+        }
+    }
+    public ResultSet Select(String query){
         Statement stmt = null;
         try {
             connectionDB();

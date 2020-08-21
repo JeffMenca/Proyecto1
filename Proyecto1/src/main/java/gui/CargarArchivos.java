@@ -6,21 +6,28 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
 
 /**
  *
  * @author jeffrey
  */
 public class CargarArchivos extends javax.swing.JFrame {
-    
-    public static String [] datos = new String [25];
+
+    public static String[] datos = new String[25];
     public static File txt;
+    public Boolean vacia = true;
+    public int lineaError = 0;
+
     /**
      * Creates new form CargarArchivos
      */
@@ -55,7 +62,6 @@ public class CargarArchivos extends javax.swing.JFrame {
                 formComponentShown(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,7 +117,7 @@ public class CargarArchivos extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 670, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,14 +131,32 @@ public class CargarArchivos extends javax.swing.JFrame {
         jLabel9.setText("Cargar informacion");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1MouseClicked
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        ComprobarDBVacia();
+
+
+    }//GEN-LAST:event_formComponentShown
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            cargarTXT(txt);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JFileChooser file = new JFileChooser();
@@ -148,16 +172,9 @@ public class CargarArchivos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            cargarTXT(txt);
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        
-    }//GEN-LAST:event_formComponentShown
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -193,22 +210,22 @@ public class CargarArchivos extends javax.swing.JFrame {
             }
         });
     }
-    public static void cargarTXT(File txt) throws FileNotFoundException, IOException {
+
+    public void cargarTXT(File txt) throws FileNotFoundException, IOException {
 
         String frase = "", frasePorDividir;
         int contadorDeDatos = 0;
         FileReader f = new FileReader(txt);
         BufferedReader b = new BufferedReader(f);
         for (int i = 0; i < datos.length; i++) {
-                datos[i] = "";
-            }
+            datos[i] = "";
+        }
         while ((frasePorDividir = b.readLine()) != null) {
-            
+
             char[] fraseDividida = frasePorDividir.toCharArray();
             for (int i = 0; i < fraseDividida.length; i++) {
                 if (fraseDividida[i] == 44) {
                     datos[contadorDeDatos] = frase;
-                    //JOptionPane.showMessageDialog(null, datos[contadorDeDatos]);
                     contadorDeDatos++;
                     frase = "";
                 } else {
@@ -216,73 +233,149 @@ public class CargarArchivos extends javax.swing.JFrame {
                 }
             }
             datos[contadorDeDatos] = frase;
-            //JOptionPane.showMessageDialog(null, datos[contadorDeDatos]);
             ComprobarTipoDeDato();
             frase = "";
-            contadorDeDatos=0;
+            contadorDeDatos = 0;
+            lineaError++;
+        }
+        JOptionPane.showMessageDialog(null, "Los datos sin errores se ingresaron exitosamente");
+    }
+
+    public void ComprobarDBVacia() {
+
+        String[] tablas = new String[10];
+        for (int i = 1; i <= 9; i++) {
+            switch (i) {
+                case 1:
+                    tablas[i] = "TIENDA";
+                    break;
+                case 2:
+                    tablas[i] = "TIEMPO_ENTRE_TIENDAS";
+                    break;
+                case 3:
+                    tablas[i] = "EMPLEADO";
+                    break;
+                case 4:
+                    tablas[i] = "CLIENTE";
+                    break;
+                case 5:
+                    tablas[i] = "PRODUCTO";
+                    break;
+                case 6:
+                    tablas[i] = "FACTURA";
+                    break;
+                case 7:
+                    tablas[i] = "VENTA";
+                    break;
+                case 8:
+                    tablas[i] = "PEDIDO";
+                    break;
+                case 9:
+                    tablas[i] = "RECIBO";
+                    break;
+                default:
+                    break;
+            }
+            String Query = "SELECT * FROM " + tablas[i];
+            DbConnection a = new DbConnection();
+            ResultSet Result = a.Select(Query);
+            try {
+                if ((Result != null) && (Result.next())) {
+                    vacia = false;
+                }
+
+            } catch (SQLException ex) {
+            }
+        }
+        if (vacia == true) {
+            jButton2.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "No puede cargar datos, la base de datos no esta vacia");
+            jButton2.setEnabled(false);
         }
     }
-   
-    public static void ComprobarTipoDeDato(){
-        
+
+    public void ComprobarTipoDeDato() {
+
         switch (datos[0]) {
-            case "TIENDA":
-                {
-                    String query = ("INSERT INTO TIENDA VALUES('"+datos[3]+"','"+datos[1]+"','"+datos[4]+"','"+datos[2]+"','"+datos[5]+"','"+datos[6]+"','"+datos[7]+"')");
+            case "TIENDA": {
+                try {
+                    String query = ("INSERT INTO TIENDA VALUES('" + datos[3] + "','" + datos[1] + "','" + datos[4] + "','" + datos[2] + "','" + datos[5] + "','" + datos[6] + "','" + datos[7] + "')");
                     DbConnection a = new DbConnection();
                     a.Insert(query);
-                    JOptionPane.showMessageDialog(null, "SE CREO TIENDA");
-                    break;
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error en el txt en la linea " + lineaError);
                 }
-            case "TIEMPO":
-                {
-                    String query = ("INSERT INTO TIEMPO_ENTRE_TIENDAS VALUES('"+0+"','"+Integer.parseInt(datos[3])+"','"+datos[2]+"','"+datos[1]+"')");
+                break;
+
+            }
+            case "TIEMPO": {
+                try {
+                    String query = ("INSERT INTO TIEMPO_ENTRE_TIENDAS VALUES('" + 0 + "','" + Integer.parseInt(datos[3]) + "','" + datos[2] + "','" + datos[1] + "')");
                     DbConnection a = new DbConnection();
                     a.Insert(query);
-                    JOptionPane.showMessageDialog(null, "SE CREO TIEMPO");
-                    break;
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error en el txt en la linea " + lineaError);
                 }
-            case "PRODUCTO":
-                {
-                    String query = ("INSERT INTO PRODUCTO VALUES('"+datos[3]+"','"+datos[1]+"','"+datos[2]+"','"+Integer.parseInt(datos[4])+"','"+Double.parseDouble(datos[5])+"','"+datos[7]+"','"+0+"','"+datos[6]+"')");
+                break;
+
+            }
+            case "PRODUCTO": {
+                try {
+                    String query = ("INSERT INTO PRODUCTO VALUES('" + datos[3] + "','" + datos[1] + "','" + datos[2] + "','" + Integer.parseInt(datos[4]) + "','" + Double.parseDouble(datos[5]) + "','" + datos[7] + "','" + 0 + "','" + datos[6] + "')");
                     DbConnection a = new DbConnection();
                     a.Insert(query);
-                    JOptionPane.showMessageDialog(null, "SE CREO PRODUCTO");
-                    break;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error en el txt en la linea " + lineaError);
                 }
-            case "CLIENTE":
-                {
-                    String query = ("INSERT INTO CLIENTE VALUES('"+datos[2]+"','"+datos[1]+"','"+datos[3]+"','"+datos[5]+"','"+Double.parseDouble(datos[4])+"','"+datos[6]+"','"+datos[7]+"')");
+                break;
+
+            }
+            case "CLIENTE": {
+                try {
+                    String query = ("INSERT INTO CLIENTE VALUES('" + datos[2] + "','" + datos[1] + "','" + datos[3] + "','" + datos[5] + "','" + Double.parseDouble(datos[4]) + "','" + datos[6] + "','" + datos[7] + "')");
                     DbConnection a = new DbConnection();
                     a.Insert(query);
-                    JOptionPane.showMessageDialog(null, "SE CREO CLIENTE");
-                    break;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error en el txt en la linea " + lineaError);
                 }
-            case "EMPLEADO":
-                {
-                    String query = ("INSERT INTO EMPLEADO VALUES('"+datos[2]+"','"+datos[1]+"','"+datos[3]+"','"+datos[5]+"','"+datos[4]+"','"+datos[6]+"','"+datos[7]+"')");
+                break;
+
+            }
+            case "EMPLEADO": {
+                try {
+                    String query = ("INSERT INTO EMPLEADO VALUES('" + datos[2] + "','" + datos[1] + "','" + datos[3] + "','" + datos[5] + "','" + datos[4] + "','" + datos[6] + "','" + datos[7] + "')");
                     DbConnection a = new DbConnection();
                     a.Insert(query);
-                    JOptionPane.showMessageDialog(null, "SE CREO EMPLEADO");
-                    break;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error en el txt en la linea " + lineaError);
                 }
-            case "PEDIDO":
-                {
+                break;
+
+            }
+            case "PEDIDO": {
+                try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     String date = datos[4];
                     LocalDate fecha = LocalDate.parse(date, formatter);
-                    String query = ("INSERT INTO PEDIDO VALUES('"+0+"','"+fecha+"','"+Integer.parseInt(datos[7])+"','"+Double.parseDouble(datos[8])+"','"+Double.parseDouble(datos[9])+"','"+datos[6]+"','"+datos[5]+"','"+datos[2]+"','"+datos[3]+"')");
+                    String query = ("INSERT INTO PEDIDO VALUES('" + 0 + "','" + fecha + "','" + Integer.parseInt(datos[7]) + "','" + Double.parseDouble(datos[8]) + "','" + Double.parseDouble(datos[9]) + "','" + datos[6] + "','" + datos[5] + "','" + datos[2] + "','" + datos[3] + "')");
                     DbConnection a = new DbConnection();
                     a.Insert(query);
-                    JOptionPane.showMessageDialog(null, "SE CREO PEDIDO");
-                    break;
+ 
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error en el txt en la linea " + lineaError);
                 }
+                break;
+
+            }
             default:
                 break;
         }
         
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
