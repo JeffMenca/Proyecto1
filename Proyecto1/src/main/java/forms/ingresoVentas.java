@@ -412,25 +412,24 @@ public class ingresoVentas extends javax.swing.JFrame {
                     String query = ("UPDATE CLIENTE SET credito = '" + credito + "' WHERE NIT='" + nit + "'");
                     DbConnection a = new DbConnection();
                     a.Insert(query);
-                }
-                else{
-                    Double totalNuevo=total-credito;
-                    credito=0.00;
-                    JOptionPane.showMessageDialog(null, "Su credito no es suficiente, debera pagar en efectivo "+totalNuevo);
+                } else {
+                    Double totalNuevo = total - credito;
+                    credito = 0.00;
+                    JOptionPane.showMessageDialog(null, "Su credito no es suficiente, debera pagar en efectivo " + totalNuevo);
                     String query = ("UPDATE CLIENTE SET credito = '" + credito + "' WHERE NIT='" + nit + "'");
                     DbConnection a = new DbConnection();
                     a.Insert(query);
                 }
             }
-            
-                String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+fecha+"','"+total+"','"+nit+"','"+nombre_tienda+"')");
-                DbConnection a = new DbConnection();
-                int codigofactura=a.InsertVenta(query);
-              JOptionPane.showMessageDialog(null, "Se realizo su compra y su factura correctamente");
-              cargarTabla1();
-              tclientes.setEnabled(true);
-              modelcarrito = new DefaultTableModel();
-              modelcarrito = new DefaultTableModel() {
+
+            String query = ("INSERT INTO FACTURA VALUES('" + 0 + "','" + fecha + "','" + total + "','" + nit + "','" + nombre_tienda + "')");
+            DbConnection a = new DbConnection();
+            int codigofactura = a.InsertVenta(query);
+            JOptionPane.showMessageDialog(null, "Se realizo su compra y su factura correctamente");
+            cargarTabla1();
+            tclientes.setEnabled(true);
+            modelcarrito = new DefaultTableModel();
+            modelcarrito = new DefaultTableModel() {
                 @Override
                 public boolean isCellEditable(int row, int column) {
                     return false;
@@ -443,17 +442,16 @@ public class ingresoVentas extends javax.swing.JFrame {
             tcarrito.setModel(modelcarrito);
             for (int i = 0; i < tcarrito.getRowCount(); i++) {
                 row = i;
-                int cantidad= Integer.parseInt(tcarrito.getModel().getValueAt(row, 0).toString());
-                Double precio= Double.parseDouble(tcarrito.getModel().getValueAt(row, 3).toString());
-                String codigoproducto= tcarrito.getModel().getValueAt(row, 1).toString();
-                query = ("INSERT INTO VENTA VALUES('"+0+"','"+cantidad+"','"+precio+"','"+codigoproducto+"','"+codigofactura+"')");
+                int cantidad = Integer.parseInt(tcarrito.getModel().getValueAt(row, 0).toString());
+                Double precio = Double.parseDouble(tcarrito.getModel().getValueAt(row, 3).toString());
+                String codigoproducto = tcarrito.getModel().getValueAt(row, 1).toString();
+                query = ("INSERT INTO VENTA VALUES('" + 0 + "','" + cantidad + "','" + precio + "','" + codigoproducto + "','" + codigofactura + "')");
                 a = new DbConnection();
                 a.Insert(query);
-                
+
             }
-                
-        }
-        else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Debe ingresar por lo menos un producto");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
