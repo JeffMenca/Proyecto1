@@ -21,9 +21,10 @@ import javax.swing.table.DefaultTableModel;
 public class ingresoPedidos extends javax.swing.JFrame {
 
     public static String nombre_tienda;
-    public String nit="";
+    public String nit = "";
     public LocalDate fecha = LocalDate.now();
-    public static Double anticipototal,total;
+    public static Double anticipototal, total;
+
     /**
      * Creates new form ingresoVentas
      */
@@ -67,7 +68,6 @@ public class ingresoPedidos extends javax.swing.JFrame {
         tbNIT = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         tbProducto = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         cmTienda = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
         tbAnticipo = new javax.swing.JTextField();
@@ -76,6 +76,7 @@ public class ingresoPedidos extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         tProducto = new javax.swing.JTable();
         cbPagarCredito = new javax.swing.JCheckBox();
+        jLabel18 = new javax.swing.JLabel();
 
         jLabel7.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,7 +143,7 @@ public class ingresoPedidos extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 790, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 530, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCeleste.png"))); // NOI18N
@@ -151,7 +152,7 @@ public class ingresoPedidos extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Pedidos");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
 
         tbCantidad.setBackground(new java.awt.Color(255, 255, 255));
         tbCantidad.setForeground(new java.awt.Color(0, 0, 0));
@@ -203,11 +204,6 @@ public class ingresoPedidos extends javax.swing.JFrame {
         tbProducto.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
         tbProducto.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(tbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 170, -1));
-
-        jLabel12.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Tienda");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         cmTienda.setBackground(new java.awt.Color(255, 255, 255));
         cmTienda.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
@@ -302,11 +298,16 @@ public class ingresoPedidos extends javax.swing.JFrame {
         });
         jPanel1.add(cbPagarCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 560, -1, -1));
 
+        jLabel18.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Tienda");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,27 +400,26 @@ public class ingresoPedidos extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void cargarTabla1(){
-        String filter=tbNIT.getText();
-        String where="";
+    public void cargarTabla1() {
+        String filter = tbNIT.getText();
+        String where = "";
         if (!filter.equals("")) {
-            where=" WHERE NIT LIKE '%"+filter+"%'";
+            where = " WHERE NIT LIKE '%" + filter + "%'";
+        } else {
+            where = "";
         }
-        else{
-           where=""; 
-        }
-        DefaultTableModel model=new DefaultTableModel();
-        model=new DefaultTableModel(){
-                @Override
-                public boolean isCellEditable(int row, int column) {
+        DefaultTableModel model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
                 return false;
-                }
-           };
+            }
+        };
         tclientes.setModel(model);
-        String Query = "SELECT NIT, nombre, credito FROM CLIENTE"+ where;
-        DbConnection a = new DbConnection(); 
+        String Query = "SELECT NIT, nombre, credito FROM CLIENTE" + where;
+        DbConnection a = new DbConnection();
         ResultSet Result = a.SelectOnComboBox(Query);
- 
+
         try {
             ResultSetMetaData ResultMd = Result.getMetaData();
             int columnscount = ResultMd.getColumnCount();
@@ -438,27 +438,27 @@ public class ingresoPedidos extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-     public void cargarTabla2(){
-        String filter=tbProducto.getText();
-        String where="";
+
+    public void cargarTabla2() {
+        String filter = tbProducto.getText();
+        String where = "";
         if (!filter.equals("")) {
-            where=" WHERE codigo_tienda != '"+nombre_tienda+"' && nombre LIKE '%"+filter+"%'";
+            where = " WHERE codigo_tienda != '" + nombre_tienda + "' && nombre LIKE '%" + filter + "%'";
+        } else {
+            where = " WHERE codigo_tienda != '" + nombre_tienda + "'";
         }
-        else{
-           where=" WHERE codigo_tienda != '"+nombre_tienda+"'"; 
-        }
-        DefaultTableModel model=new DefaultTableModel();
-        model= new DefaultTableModel(){
-                @Override
-                public boolean isCellEditable(int row, int column) {
+        DefaultTableModel model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
                 return false;
-                }
-           };
+            }
+        };
         tProducto.setModel(model);
-        String Query = "SELECT codigo, nombre, precio, cantidad FROM PRODUCTO"+ where;
-        DbConnection a = new DbConnection(); 
+        String Query = "SELECT codigo, nombre, precio, cantidad FROM PRODUCTO" + where;
+        DbConnection a = new DbConnection();
         ResultSet Result = a.SelectOnComboBox(Query);
- 
+
         try {
             ResultSetMetaData ResultMd = Result.getMetaData();
             int columnscount = ResultMd.getColumnCount();
@@ -478,47 +478,48 @@ public class ingresoPedidos extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
+
     public void sumartotal() {
-         total=0.0;
+        total = 0.0;
         try {
             int row = tProducto.getSelectedRow();
             total = Double.parseDouble(tProducto.getValueAt(row, 2).toString());
             total *= Double.parseDouble(tbCantidad.getText());
             lbTotal.setText(String.valueOf(total));
-            anticipototal=total*0.25;
+            anticipototal = total * 0.25;
             tbAnticipo.setText(String.valueOf(anticipototal));
-            
 
         } catch (Exception e) {
             lbTotal.setText("0.00");
             tbAnticipo.setText("");
         }
-       
 
     }
-     public void listenertbCantidad(){
+
+    public void listenertbCantidad() {
         tbCantidad.getDocument().addDocumentListener(new DocumentListener() {
-             @Override
-             public void insertUpdate(DocumentEvent de) {
-                 sumartotal();
-             }
+            @Override
+            public void insertUpdate(DocumentEvent de) {
+                sumartotal();
+            }
 
-             @Override
-             public void removeUpdate(DocumentEvent de) {
-                 sumartotal();
-             }
+            @Override
+            public void removeUpdate(DocumentEvent de) {
+                sumartotal();
+            }
 
-             @Override
-             public void changedUpdate(DocumentEvent de) {
-                 sumartotal();
-             }
-         });
+            @Override
+            public void changedUpdate(DocumentEvent de) {
+                sumartotal();
+            }
+        });
     }
-     public void listenerTBnit(){
+
+    public void listenerTBnit() {
         tbNIT.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent de) {
-               cargarTabla1();
+                cargarTabla1();
             }
 
             @Override
@@ -532,11 +533,12 @@ public class ingresoPedidos extends javax.swing.JFrame {
             }
         });
     }
-     public void listenerTBproducto(){
+
+    public void listenerTBproducto() {
         tbProducto.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent de) {
-               cargarTabla2();
+                cargarTabla2();
             }
 
             @Override
@@ -550,14 +552,11 @@ public class ingresoPedidos extends javax.swing.JFrame {
             }
         });
     }
-     
-     public void obtenerTiendaActual(String tienda) {
+
+    public void obtenerTiendaActual(String tienda) {
         nombre_tienda = tienda;
-        
     }
-     
-   
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -602,12 +601,12 @@ public class ingresoPedidos extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel24;

@@ -218,7 +218,7 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        ingresoPedidos ingresoPedido=new ingresoPedidos();
+        MenuPedidos ingresoPedido=new MenuPedidos();
         ingresoPedido.obtenerTiendaActual(nombre_tienda);
         ingresoPedido.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed

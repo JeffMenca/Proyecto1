@@ -448,7 +448,6 @@ public class ingresoVentas extends javax.swing.JFrame {
                 query = ("INSERT INTO VENTA VALUES('" + 0 + "','" + cantidad + "','" + precio + "','" + codigoproducto + "','" + codigofactura + "')");
                 a = new DbConnection();
                 a.Insert(query);
-
             }
 
         } else {
