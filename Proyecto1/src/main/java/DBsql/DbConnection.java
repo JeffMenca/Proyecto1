@@ -1,5 +1,6 @@
 package DBsql;
 
+import gui.CargarArchivos;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -76,7 +77,13 @@ public class DbConnection {
             disconnectDB();
         } catch (SQLException e) {
             if (e.getErrorCode() == MYSQL_DUPLICATE_PK) {
-                JOptionPane.showMessageDialog(null, "Error el ID o codigo ya existe");
+                if (CargarArchivos.lineaError==0) 
+                    JOptionPane.showMessageDialog(null, "Error el ID o codigo ya existe");
+                else
+                    JOptionPane.showMessageDialog(null, "Error, query erronea en la linea "+CargarArchivos.lineaError);
+                    
+                
+                
             } else {
                 JOptionPane.showMessageDialog(null, e);
             }

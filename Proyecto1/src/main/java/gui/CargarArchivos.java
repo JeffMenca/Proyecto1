@@ -26,7 +26,7 @@ public class CargarArchivos extends javax.swing.JFrame {
     public static String[] datos = new String[25];
     public static File txt;
     public Boolean vacia = true;
-    public int lineaError = 0;
+    public static int lineaError = 0;
 
     /**
      * Creates new form CargarArchivos
