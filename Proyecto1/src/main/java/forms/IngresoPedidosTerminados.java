@@ -246,8 +246,7 @@ public class IngresoPedidosTerminados extends javax.swing.JFrame {
         String codigo_tiendaorigen=tPedido.getModel().getValueAt(row, 1).toString();
         String codigo_tiendadestino=tPedido.getModel().getValueAt(row, 2).toString();
         String codigoTiempoEnvio="";
-        
-        String Query = "SELECT ID FROM TIEMPO_ENTRE_TIENDAS WHERE ((tienda_origen='"+codigo_tiendaorigen+"' && tienda_destino='"+codigo_tiendadestino+"')||(tienda_destino='"+codigo_tiendadestino+"' && tienda_origen='"+codigo_tiendaorigen+"'))";
+        String Query = "SELECT ID FROM TIEMPO_ENTRE_TIENDAS WHERE ((tienda_origen='"+codigo_tiendaorigen+"' && tienda_destino='"+codigo_tiendadestino+"')||(tienda_destino='"+codigo_tiendaorigen+"' && tienda_origen='"+codigo_tiendadestino+"'))";
         DbConnection a = new DbConnection();
         ResultSet Result = a.Select(Query);
         try {

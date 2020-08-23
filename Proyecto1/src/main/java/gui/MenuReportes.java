@@ -5,19 +5,23 @@
  */
 package gui;
 
-import forms.*;
+import reports.Reporte1;
+import reports.Reporte2;
+import reports.Reporte3;
+import reports.Reporte4;
 
 /**
  *
  * @author jeffrey
  */
-public class MenuTrabajadores extends javax.swing.JFrame {
-
+public class MenuReportes extends javax.swing.JFrame {
+    
+    
     public static String nombre_tienda;
     /**
-     * Creates new form MenuTrabajadores
+     * Creates new form MenuReportes
      */
-    public MenuTrabajadores() {
+    public MenuReportes() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.pack();
@@ -32,8 +36,6 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jButton9 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -46,30 +48,7 @@ public class MenuTrabajadores extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-
-        jPanel2.setBackground(new java.awt.Color(233, 150, 254));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 23, Short.MAX_VALUE)
-        );
-
-        jButton9.setBackground(new java.awt.Color(102, 153, 255));
-        jButton9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jButton9 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,148 +74,156 @@ public class MenuTrabajadores extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(102, 153, 255));
         jButton5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tiempoentretiendas.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 130, 120));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 130, 120));
 
         jButton6.setBackground(new java.awt.Color(102, 153, 255));
         jButton6.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargarinfo.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 360, 130, 120));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 130, 120));
 
         jButton7.setBackground(new java.awt.Color(102, 153, 255));
         jButton7.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
         jButton7.setToolTipText("");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 130, 120));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 130, 120));
 
         jButton8.setBackground(new java.awt.Color(102, 153, 255));
         jButton8.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuariosyclientes.png"))); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 130, 120));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 130, 120));
 
         jButton10.setBackground(new java.awt.Color(102, 153, 255));
         jButton10.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tienda.png"))); // NOI18N
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 130, 120));
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 130, 120));
 
         jButton11.setBackground(new java.awt.Color(102, 153, 255));
         jButton11.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pedidos.png"))); // NOI18N
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 130, 120));
+        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 130, 120));
 
         jButton12.setBackground(new java.awt.Color(102, 153, 255));
         jButton12.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/productos.png"))); // NOI18N
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 130, 120));
+        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 130, 120));
 
         jButton13.setBackground(new java.awt.Color(102, 153, 255));
         jButton13.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportes.png"))); // NOI18N
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 130, 120));
+        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 130, 120));
 
         jLabel9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Menu");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+        jLabel9.setText("Menu de Reportes");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 550));
+        jButton9.setBackground(new java.awt.Color(102, 153, 255));
+        jButton9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 130, 120));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        MenuTiempos ingresarTiempo=new MenuTiempos();
-        ingresarTiempo.obtenerTiendaActual(nombre_tienda);
-        ingresarTiempo.setVisible(true);
-        
+        Reporte2 a = new Reporte2();
+        a.obtenerTiendaActual(nombre_tienda);
+        a.setVisible(true);
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        CargarArchivos archivos = new CargarArchivos();
-        archivos.setVisible(true);
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        ingresoVentas ventas=new ingresoVentas();
-        ventas.obtenerTiendaActual(nombre_tienda);
-        ventas.setVisible(true);
+       
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        MenuUsuarios ingresousuarios=new MenuUsuarios();
-        ingresousuarios.setVisible(true);
+       
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        MenuTiendas ingresarTienda = new MenuTiendas();
-        ingresarTienda.setVisible(true);
-
+        Reporte1 a = new Reporte1();
+        a.obtenerTiendaActual(nombre_tienda);
+        a.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        MenuPedidos ingresoPedido=new MenuPedidos();
-        ingresoPedido.obtenerTiendaActual(nombre_tienda);
-        ingresoPedido.setVisible(true);
+       
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        MenuProductos ingresoproductos=new MenuProductos();
-        ingresoproductos.obtenerTiendaActual(nombre_tienda);
-        ingresoproductos.setVisible(true);
+        Reporte3 a = new Reporte3();
+        a.obtenerTiendaActual(nombre_tienda);
+        a.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        MenuReportes a = new MenuReportes();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Reporte4 a = new Reporte4();
         a.obtenerTiendaActual(nombre_tienda);
         a.setVisible(true);
-    }//GEN-LAST:event_jButton13ActionPerformed
-    public void obtenerTiendaActual(String tienda){
-    nombre_tienda=tienda;
+    }//GEN-LAST:event_jButton9ActionPerformed
+    
+     public void obtenerTiendaActual(String tienda) {
+        nombre_tienda = tienda;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -254,20 +241,20 @@ public class MenuTrabajadores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuTrabajadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuReportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuTrabajadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuReportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuTrabajadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuReportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuTrabajadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuReportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuTrabajadores().setVisible(true);
+                new MenuReportes().setVisible(true);
             }
         });
     }
@@ -285,7 +272,6 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
