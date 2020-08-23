@@ -185,7 +185,7 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ingresoTiempo ingresarTiempo=new ingresoTiempo();
+        MenuTiempos ingresarTiempo=new MenuTiempos();
         ingresarTiempo.obtenerTiendaActual(nombre_tienda);
         ingresarTiempo.setVisible(true);
         
@@ -203,7 +203,7 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        ingresoUsuarios ingresousuarios=new ingresoUsuarios();
+        MenuUsuarios ingresousuarios=new MenuUsuarios();
         ingresousuarios.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -212,7 +212,7 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        ingresoTiendas ingresarTienda = new ingresoTiendas();
+        MenuTiendas ingresarTienda = new MenuTiendas();
         ingresarTienda.setVisible(true);
 
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -224,7 +224,7 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        ingresoProductos ingresoproductos=new ingresoProductos();
+        MenuProductos ingresoproductos=new MenuProductos();
         ingresoproductos.obtenerTiendaActual(nombre_tienda);
         ingresoproductos.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed

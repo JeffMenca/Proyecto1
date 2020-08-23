@@ -71,7 +71,6 @@ public class ingresoVentas extends javax.swing.JFrame {
         tcarrito = new javax.swing.JTable();
         cbPagarCredito = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
