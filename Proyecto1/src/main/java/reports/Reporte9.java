@@ -8,22 +8,20 @@ package reports;
 import DBsql.DbConnection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.time.LocalDate;
-import static java.time.temporal.ChronoUnit.DAYS;
 import javax.swing.table.DefaultTableModel;
+import static reports.Reporte8.nombre_tienda;
 
 /**
  *
  * @author jeffrey
  */
-public class Reporte3 extends javax.swing.JFrame {
+public class Reporte9 extends javax.swing.JFrame {
     
     public static String nombre_tienda;
-    public LocalDate fecha = LocalDate.now();
     /**
-     * Creates new form Reporte3
+     * Creates new form Reporte9
      */
-    public Reporte3() {
+    public Reporte9() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.pack();
@@ -40,7 +38,7 @@ public class Reporte3 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lbTitulo = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tReporte1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -58,52 +56,52 @@ public class Reporte3 extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCeleste.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 25, 310, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 310, -1));
 
-        lbTitulo.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 21)); // NOI18N
-        lbTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lbTitulo.setText("Pedidos atrasados que llegarán a la tienda");
-        jPanel1.add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+        jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 21)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Productos nunca vendidos por tienda");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         tReporte1.setBackground(new java.awt.Color(255, 255, 255));
         tReporte1.setForeground(new java.awt.Color(0, 0, 0));
         tReporte1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Codigo", "Fecha", "Cantidad", "Total", "Anticipo", "Codigo Producto", "Codigo Cliente", "Tienda Origen", "Tienda destino", "Tiempo"
+                "Codigo", "Nombre", "Veces comprado", "Fecha"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -116,7 +114,7 @@ public class Reporte3 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tReporte1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 824, 240));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 640, 240));
 
         jPanel2.setBackground(new java.awt.Color(49, 255, 245));
 
@@ -131,7 +129,7 @@ public class Reporte3 extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 240, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 232, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(49, 255, 245));
 
@@ -146,7 +144,7 @@ public class Reporte3 extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 935, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 464, 720, -1));
 
         btExportar.setBackground(new java.awt.Color(51, 51, 51));
         btExportar.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
@@ -158,7 +156,7 @@ public class Reporte3 extends javax.swing.JFrame {
                 btExportarActionPerformed(evt);
             }
         });
-        jPanel1.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, 90, 70));
+        jPanel1.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 90, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,87 +166,60 @@ public class Reporte3 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        cargarTabla2();
-        lbTitulo.setText("Pedidos atrasados que llegarán a la tienda "+nombre_tienda);
+        cargarTabla();
     }//GEN-LAST:event_formComponentShown
 
     private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed
         ExportarReporte exportar=new ExportarReporte();
         exportar.tablaexportada.setModel(tReporte1.getModel());
-        exportar.titulo="Pedidos atrasados que llegarán a la tienda "+nombre_tienda;
+        exportar.titulo="Productos nunca vendidos por tienda";
         exportar.setVisible(true);
     }//GEN-LAST:event_btExportarActionPerformed
     
-     public void cargarTabla2(){
-     
-        
-        String where=""; 
-        DefaultTableModel model=new DefaultTableModel();
-        model= new DefaultTableModel(){
-                @Override
-                public boolean isCellEditable(int row, int column) {
+    
+     public void cargarTabla() {
+
+        DefaultTableModel model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
                 return false;
-                }
-           };
+            }
+        };
         tReporte1.setModel(model);
-        String Query = "SELECT p.*,t.tiempo FROM PEDIDO p INNER JOIN TIEMPO_ENTRE_TIENDAS t ON ((p.codigo_tiendaorigen= t.tienda_origen)&&(p.codigo_tiendadestino=t.tienda_destino)||(p.codigo_tiendaorigen= t.tienda_destino)&&(p.codigo_tiendadestino=t.tienda_origen)) LEFT JOIN RECIBO r ON p.codigo = r.codigo_pedido WHERE r.ID IS NULL && p.codigo_tiendadestino= '"+nombre_tienda+"'";
-        DbConnection a = new DbConnection(); 
-        ResultSet Result = a.Select(Query);
-        
-      
-        
- 
+        String Query = "SELECT p.codigo,p.nombre,p.codigo_tienda FROM PRODUCTO p LEFT JOIN VENTA v ON p.codigo=v.codigo_producto WHERE v.ID IS NULL && p.codigo_tienda='"+nombre_tienda+"' GROUP BY p.codigo ORDER BY COUNT(p.codigo) DESC";
+        DbConnection a = new DbConnection();
+        ResultSet Result = a.SelectOnComboBox(Query);
+
         try {
             ResultSetMetaData ResultMd = Result.getMetaData();
             int columnscount = ResultMd.getColumnCount();
             model.addColumn("Codigo");
-            model.addColumn("Fecha");
-            model.addColumn("Cantidad");
-            model.addColumn("Total");
-            model.addColumn("Anticipo");
-            model.addColumn("Codigo producto");
-            model.addColumn("Codigo cliente");
-            model.addColumn("Tienda origen");
-            model.addColumn("TIenda destino");
-            model.addColumn("Tiempo");
+            model.addColumn("Nombre");
+            model.addColumn("Tienda");
             while (Result.next()) {
                 Object[] rows = new Object[columnscount];
-                if (ATiempo(Result.getString("Fecha"),Result.getString("Tiempo"))==false) {
-                    for (int i = 0; i < columnscount; i++) {
+                for (int i = 0; i < columnscount; i++) {
                     rows[i] = Result.getObject(i + 1);
                 }
-                    model.addRow(rows);
-                }
-
+                model.addRow(rows);
             }
 
         } catch (Exception e) {
-        }
-    }
-    
-    public Boolean ATiempo(String fechapedido, String tiempo) {
-        LocalDate fechaDelPedido = LocalDate.parse(fechapedido);
-        long diasdiferencia = DAYS.between(fechaDelPedido, fecha);
-        int tiempototal = (int) diasdiferencia;
-        int tiempoEnvio = Integer.parseInt(tiempo);
-        if (tiempoEnvio < tiempototal) {
-            return false;
-        } else {
-            return true;
         }
     }
 
     public void obtenerTiendaActual(String tienda) {
         nombre_tienda = tienda;
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -266,20 +237,20 @@ public class Reporte3 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reporte3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte9.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reporte3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte9.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reporte3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte9.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reporte3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte9.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reporte3().setVisible(true);
+                new Reporte9().setVisible(true);
             }
         });
     }
@@ -287,11 +258,11 @@ public class Reporte3 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btExportar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lbTitulo;
     private javax.swing.JTable tReporte1;
     // End of variables declaration//GEN-END:variables
 }

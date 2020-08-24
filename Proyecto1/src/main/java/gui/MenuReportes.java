@@ -12,6 +12,8 @@ import reports.Reporte4;
 import reports.Reporte5;
 import reports.Reporte6;
 import reports.Reporte7;
+import reports.Reporte8;
+import reports.Reporte9;
 
 /**
  *
@@ -186,7 +188,9 @@ public class MenuReportes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        
+         Reporte9 a = new Reporte9();
+        a.obtenerTiendaActual(nombre_tienda);
+        a.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -217,7 +221,9 @@ public class MenuReportes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+        Reporte8 a = new Reporte8();
+        a.obtenerTiendaActual(nombre_tienda);
+        a.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed

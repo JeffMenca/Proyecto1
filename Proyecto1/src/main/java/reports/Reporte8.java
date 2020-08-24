@@ -6,24 +6,25 @@
 package reports;
 
 import DBsql.DbConnection;
+import static gui.MenuReportes.nombre_tienda;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static reports.Reporte1.nombre_tienda;
 
 /**
  *
  * @author jeffrey
  */
-public class Reporte7 extends javax.swing.JFrame {
-
+public class Reporte8 extends javax.swing.JFrame {
+    
+    public static String nombre_tienda;
     /**
-     * Creates new form Reporte7
+     * Creates new form Reporte8
      */
-    public Reporte7() {
+    public Reporte8() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.pack();
@@ -67,7 +68,7 @@ public class Reporte7 extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 21)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("10 Productos mas vendidos");
+        jLabel15.setText("Productos mas vendidos por tienda");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         tReporte1.setBackground(new java.awt.Color(255, 255, 255));
@@ -205,7 +206,7 @@ public class Reporte7 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -217,19 +218,18 @@ public class Reporte7 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (!tbInicio.getText().equals("") && !tbfinal.getText().equals(""))
-            cargarTabla2();
+        cargarTabla2();
         else
-            JOptionPane.showMessageDialog(null, "Debe ingresar un intervalo de tiempo");
+        JOptionPane.showMessageDialog(null, "Debe ingresar un intervalo de tiempo");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed
         ExportarReporte exportar=new ExportarReporte();
         exportar.tablaexportada.setModel(tReporte1.getModel());
-        exportar.titulo="10 productos mas vendidos por tiempo";
+        exportar.titulo="Productos mas vendidos por tienda";
         exportar.setVisible(true);
     }//GEN-LAST:event_btExportarActionPerformed
-    
-     public void cargarTabla2(){
+    public void cargarTabla2(){
      
         
          DefaultTableModel model = new DefaultTableModel();
@@ -237,33 +237,35 @@ public class Reporte7 extends javax.swing.JFrame {
              @Override
              public boolean isCellEditable(int row, int column) {
                  return false;
-             }
-         };
-         tReporte1.setModel(model);
-         String Query = "SELECT p.codigo,p.nombre,f.fecha,COUNT(p.codigo) FROM PRODUCTO p INNER JOIN VENTA v ON p.codigo=v.codigo_producto INNER JOIN FACTURA f ON v.codigo_factura=f.codigo GROUP BY p.codigo,p.nombre,f.fecha ORDER BY COUNT(p.codigo) DESC LIMIT 10";
-         DbConnection a = new DbConnection();
-         ResultSet Result = a.SelectOnComboBox(Query);
+            }
+        };
+        tReporte1.setModel(model);
+        String Query = "SELECT p.codigo,p.nombre,f.fecha,p.codigo_tienda,COUNT(p.codigo) FROM PRODUCTO p INNER JOIN VENTA v ON p.codigo=v.codigo_producto INNER JOIN FACTURA f ON v.codigo_factura=f.codigo WHERE p.codigo_tienda='" + nombre_tienda + "' GROUP BY p.codigo,p.nombre,f.fecha ORDER BY COUNT(p.codigo) DESC";
+        DbConnection a = new DbConnection();
+        ResultSet Result = a.SelectOnComboBox(Query);
 
-         try {
-             ResultSetMetaData ResultMd = Result.getMetaData();
-             int columnscount = ResultMd.getColumnCount();
-             model.addColumn("Codigo");
-             model.addColumn("Nombre");
-             model.addColumn("Fecha");
-             model.addColumn("Veces comprado");
-             while (Result.next()) {
-                 Object[] rows = new Object[columnscount];
-                 if (Intervalo(tbInicio.getText(), tbfinal.getText(), Result.getString("Fecha"))) {
-                     for (int i = 0; i < columnscount; i++) {
-                         rows[i] = Result.getObject(i + 1);
-                     }
-                     model.addRow(rows);
-                 }
+        try {
+            ResultSetMetaData ResultMd = Result.getMetaData();
+            int columnscount = ResultMd.getColumnCount();
+            model.addColumn("Codigo");
+            model.addColumn("Nombre");
+            model.addColumn("Fecha");
+            model.addColumn("Tienda");
+            model.addColumn("Veces comprado");
+            while (Result.next()) {
+                Object[] rows = new Object[columnscount];
+                if (Intervalo(tbInicio.getText(), tbfinal.getText(), Result.getString("Fecha"))) {
+                    for (int i = 0; i < columnscount; i++) {
+                        rows[i] = Result.getObject(i + 1);
+                    }
+                    model.addRow(rows);
+                }
              }
 
          } catch (Exception e) {
          }
     }
+    
     public void cargarTabla() {
 
         DefaultTableModel model = new DefaultTableModel();
@@ -274,7 +276,7 @@ public class Reporte7 extends javax.swing.JFrame {
             }
         };
         tReporte1.setModel(model);
-        String Query = "SELECT p.codigo,p.nombre,f.fecha,COUNT(p.codigo) FROM PRODUCTO p INNER JOIN VENTA v ON p.codigo=v.codigo_producto INNER JOIN FACTURA f ON v.codigo_factura=f.codigo GROUP BY p.codigo,p.nombre,f.fecha ORDER BY COUNT(p.codigo) DESC LIMIT 10";
+        String Query = "SELECT p.codigo,p.nombre,f.fecha,p.codigo_tienda,COUNT(p.codigo) FROM PRODUCTO p INNER JOIN VENTA v ON p.codigo=v.codigo_producto INNER JOIN FACTURA f ON v.codigo_factura=f.codigo WHERE p.codigo_tienda='"+nombre_tienda+"' GROUP BY p.codigo,p.nombre,f.fecha ORDER BY COUNT(p.codigo) DESC";
         DbConnection a = new DbConnection();
         ResultSet Result = a.SelectOnComboBox(Query);
 
@@ -284,6 +286,7 @@ public class Reporte7 extends javax.swing.JFrame {
             model.addColumn("Codigo");
             model.addColumn("Nombre");
             model.addColumn("Fecha");
+            model.addColumn("Tienda");
             model.addColumn("Veces comprado");
             while (Result.next()) {
                 Object[] rows = new Object[columnscount];
@@ -296,7 +299,7 @@ public class Reporte7 extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
+    
     public Boolean Intervalo(String fechaInicio, String fechaFinal, String fechaPedido) {
         LocalDate fechaDelPedido = LocalDate.parse(fechaPedido);
         LocalDate fechaDelInicio = LocalDate.parse(fechaInicio);
@@ -305,9 +308,13 @@ public class Reporte7 extends javax.swing.JFrame {
         int tiempointervalo = (int) diasintervalo;
         long diaspedido = DAYS.between(fechaDelInicio, fechaDelPedido);
         int tiempopedido = (int) diaspedido;
-        return tiempopedido <= tiempointervalo && tiempopedido>=0;
+        return tiempopedido <= tiempointervalo && tiempopedido >= 0;
     }
-
+    
+    public void obtenerTiendaActual(String tienda) {
+        nombre_tienda = tienda;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -325,20 +332,20 @@ public class Reporte7 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reporte7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte8.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reporte7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte8.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reporte7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte8.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reporte7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte8.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reporte7().setVisible(true);
+                new Reporte8().setVisible(true);
             }
         });
     }
