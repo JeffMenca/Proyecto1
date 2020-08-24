@@ -8,6 +8,8 @@ package reports;
 import DBsql.DbConnection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
 import javax.swing.table.DefaultTableModel;
 import static reports.Reporte1.nombre_tienda;
 
@@ -15,12 +17,12 @@ import static reports.Reporte1.nombre_tienda;
  *
  * @author jeffrey
  */
-public class Reporte5 extends javax.swing.JFrame {
+public class Reporte7 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Reporte5
+     * Creates new form Reporte7
      */
-    public Reporte5() {
+    public Reporte7() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.pack();
@@ -42,6 +44,11 @@ public class Reporte5 extends javax.swing.JFrame {
         tReporte1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        tbfinal = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tbInicio = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -50,53 +57,56 @@ public class Reporte5 extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCeleste.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 310, -1));
 
         jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 21)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Compras por cliente");
+        jLabel15.setText("10 Productos mas vendidos");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
 
         tReporte1.setBackground(new java.awt.Color(255, 255, 255));
         tReporte1.setForeground(new java.awt.Color(0, 0, 0));
         tReporte1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Codigo factura", "Fecha", "Total", "NIT", "Codigo tienda"
+                "Codigo", "Nombre", "Veces comprado", "Fecha"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -108,6 +118,8 @@ public class Reporte5 extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tReporte1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 560, 240));
 
         jPanel2.setBackground(new java.awt.Color(49, 255, 245));
 
@@ -122,6 +134,8 @@ public class Reporte5 extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 232, -1, -1));
+
         jPanel3.setBackground(new java.awt.Color(49, 255, 245));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -135,53 +149,34 @@ public class Reporte5 extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jLabel15)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 75, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 946, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel15)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 464, 930, -1));
+
+        tbfinal.setBackground(new java.awt.Color(255, 255, 255));
+        tbfinal.setForeground(new java.awt.Color(0, 0, 0));
+        tbfinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        jPanel1.add(tbfinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 215, 30));
+
+        jLabel2.setText("Fecha Final (año,mes,dia)");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, -1, -1));
+
+        jLabel3.setText("Fecha Inicio (año,mes,dia)");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, -1, -1));
+
+        tbInicio.setBackground(new java.awt.Color(255, 255, 255));
+        tbInicio.setForeground(new java.awt.Color(0, 0, 0));
+        tbInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        jPanel1.add(tbInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 220, 215, 30));
+
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setText("Ingresar intervalo");
+        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(49, 255, 245), 3, true));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, 170, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,8 +190,9 @@ public class Reporte5 extends javax.swing.JFrame {
         cargarTabla2();
     }//GEN-LAST:event_formComponentShown
     
-    public void cargarTabla2(){
+     public void cargarTabla2(){
      
+        
         DefaultTableModel model=new DefaultTableModel();
         model= new DefaultTableModel(){
                 @Override
@@ -204,33 +200,44 @@ public class Reporte5 extends javax.swing.JFrame {
                 return false;
                 }
            };
-        tReporte1.setModel(model);
-        String Query = "SELECT c.nombre,f.* FROM CLIENTE c INNER JOIN FACTURA f ON c.NIT = f.codigo_cliente";
-        DbConnection a = new DbConnection(); 
-        ResultSet Result = a.SelectOnComboBox(Query);
- 
+         tReporte1.setModel(model);
+         String Query = "SELECT p.codigo,p.nombre,f.fecha,COUNT(p.codigo) FROM PRODUCTO p INNER JOIN VENTA v ON p.codigo=v.codigo_producto INNER JOIN FACTURA f ON v.codigo_factura=f.codigo GROUP BY p.codigo,p.nombre,f.fecha ORDER BY COUNT(p.codigo) DESC LIMIT 10";
+         DbConnection a = new DbConnection();
+         ResultSet Result = a.SelectOnComboBox(Query);
+
         try {
             ResultSetMetaData ResultMd = Result.getMetaData();
             int columnscount = ResultMd.getColumnCount();
+            model.addColumn("Codigo");
             model.addColumn("Nombre");
-            model.addColumn("Codigo factura");
             model.addColumn("Fecha");
-            model.addColumn("Total");
-            model.addColumn("NIT");
-            model.addColumn("Codigo Tienda");
+            model.addColumn("Veces comprado");
             while (Result.next()) {
                 Object[] rows = new Object[columnscount];
-                for (int i = 0; i < columnscount; i++) {
-                    rows[i] = Result.getObject(i + 1);
+                if (Intevalo(tbInicio.getText(), tbfinal.getText(), Result.getString("Fecha"))) {
+                    for (int i = 0; i < columnscount; i++) {
+                        rows[i] = Result.getObject(i + 1);
+                    }
+                    model.addRow(rows);
                 }
-                model.addRow(rows);
-
             }
 
         } catch (Exception e) {
         }
     }
     
+     public Boolean Intevalo(String fechaInicio,String fechaFinal,String fechaPedido) {
+         LocalDate fechaDelPedido = LocalDate.parse(fechaPedido);
+         LocalDate fechaDelInicio = LocalDate.parse(fechaInicio);
+         LocalDate fechaDelFinal = LocalDate.parse(fechaFinal);
+        long diasintervalo = DAYS.between(fechaDelInicio, fechaDelFinal);
+        int tiempointervalo = (int) diasintervalo;
+        long diaspedido = DAYS.between(fechaDelInicio, fechaDelPedido);
+        int tiempopedido = (int) diaspedido;
+        return tiempopedido <= tiempointervalo;
+    }
+     
+     
     /**
      * @param args the command line arguments
      */
@@ -248,31 +255,36 @@ public class Reporte5 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reporte5().setVisible(true);
+                new Reporte7().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tReporte1;
+    private javax.swing.JFormattedTextField tbInicio;
+    private javax.swing.JFormattedTextField tbfinal;
     // End of variables declaration//GEN-END:variables
 }

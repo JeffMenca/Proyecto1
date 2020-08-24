@@ -427,7 +427,19 @@ public class ingresoVentas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Se realizo su compra y su factura correctamente");
             cargarTabla1();
             tclientes.setEnabled(true);
-            modelcarrito = new DefaultTableModel();
+
+            for (int i = 0; i < tcarrito.getRowCount(); i++) {
+                int cantidad = Integer.parseInt(tcarrito.getModel().getValueAt(i, 0).toString());
+                Double precio = Double.parseDouble(tcarrito.getModel().getValueAt(i, 3).toString());
+                String codigoproducto = tcarrito.getModel().getValueAt(i, 1).toString();
+                try {
+                    query = ("INSERT INTO VENTA VALUES('" + 0 + "','" + cantidad + "','" + precio + "','" + codigoproducto + "','" + codigofactura + "')");
+                    a = new DbConnection();
+                    a.Insert(query);
+                } catch (Exception e) {
+                }
+                
+            }
             modelcarrito = new DefaultTableModel() {
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -439,15 +451,6 @@ public class ingresoVentas extends javax.swing.JFrame {
             modelcarrito.addColumn("Producto");
             modelcarrito.addColumn("Precio");
             tcarrito.setModel(modelcarrito);
-            for (int i = 0; i < tcarrito.getRowCount(); i++) {
-                row = i;
-                int cantidad = Integer.parseInt(tcarrito.getModel().getValueAt(row, 0).toString());
-                Double precio = Double.parseDouble(tcarrito.getModel().getValueAt(row, 3).toString());
-                String codigoproducto = tcarrito.getModel().getValueAt(row, 1).toString();
-                query = ("INSERT INTO VENTA VALUES('" + 0 + "','" + cantidad + "','" + precio + "','" + codigoproducto + "','" + codigofactura + "')");
-                a = new DbConnection();
-                a.Insert(query);
-            }
 
         } else {
             JOptionPane.showMessageDialog(null, "Debe ingresar por lo menos un producto");
