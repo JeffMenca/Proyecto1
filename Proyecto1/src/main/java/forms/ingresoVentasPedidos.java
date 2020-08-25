@@ -284,12 +284,14 @@ public class ingresoVentasPedidos extends javax.swing.JFrame {
                     String query = ("UPDATE CLIENTE SET credito= credito+'" + Double.parseDouble(creditoGanado) + "' WHERE NIT='" + codigocliente + "'");
                     a = new DbConnection();
                     a.Insert(query);
+                     JOptionPane.showMessageDialog(null, "Se le agrego 5% de credito de la compra por el anticipo y el retraso" );
                 }
                 else{
                     creditoGanado= String.valueOf(Double.parseDouble(total)*0.02);
                     String query = ("UPDATE CLIENTE SET credito= credito+'" + Double.parseDouble(creditoGanado) + "' WHERE NIT='" + codigocliente + "'");
                     a = new DbConnection();
                     a.Insert(query);
+                    JOptionPane.showMessageDialog(null, "Se le agrego 2% de credito de la compra por el retraso" );
                 }
             }
 

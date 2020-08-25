@@ -77,6 +77,9 @@ public class ingresoPedidos extends javax.swing.JFrame {
         tProducto = new javax.swing.JTable();
         cbPagarCredito = new javax.swing.JCheckBox();
         jLabel18 = new javax.swing.JLabel();
+        tbfecha = new javax.swing.JFormattedTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
 
         jLabel7.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,21 +145,21 @@ public class ingresoPedidos extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 530, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 570, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCeleste.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 310, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 310, -1));
 
         jLabel9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Pedidos");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
 
         tbCantidad.setBackground(new java.awt.Color(255, 255, 255));
         tbCantidad.setForeground(new java.awt.Color(0, 0, 0));
         tbCantidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        jPanel1.add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 50, 30));
+        jPanel1.add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 50, 30));
 
         lbTotal.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         lbTotal.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,52 +175,52 @@ public class ingresoPedidos extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 600, 170, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 600, 170, 40));
 
         jLabel6.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cantidad");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Total: ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 530, -1, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, -1, 30));
 
-        jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("NIT ");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+        jLabel15.setText("(año,mes,dia)");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         tbNIT.setBackground(new java.awt.Color(255, 255, 255));
         tbNIT.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
         tbNIT.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(tbNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 310, -1));
+        jPanel1.add(tbNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 310, -1));
 
         jLabel13.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Producto");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
 
         tbProducto.setBackground(new java.awt.Color(255, 255, 255));
         tbProducto.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
         tbProducto.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(tbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 170, -1));
+        jPanel1.add(tbProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 170, -1));
 
         cmTienda.setBackground(new java.awt.Color(255, 255, 255));
         cmTienda.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
         cmTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        jPanel1.add(cmTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 320, -1));
+        jPanel1.add(cmTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 320, -1));
 
         jLabel17.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Anticipo");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, -1, -1));
 
         tbAnticipo.setBackground(new java.awt.Color(255, 255, 255));
         tbAnticipo.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
         tbAnticipo.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(tbAnticipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 60, -1));
+        jPanel1.add(tbAnticipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 60, -1));
 
         tclientes.setBackground(new java.awt.Color(255, 255, 255));
         tclientes.setForeground(new java.awt.Color(0, 0, 0));
@@ -249,7 +252,7 @@ public class ingresoPedidos extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tclientes);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 320, 80));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 320, 80));
 
         tProducto.setBackground(new java.awt.Color(255, 255, 255));
         tProducto.setForeground(new java.awt.Color(0, 0, 0));
@@ -284,7 +287,7 @@ public class ingresoPedidos extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(tProducto);
 
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 320, 130));
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 320, 130));
 
         cbPagarCredito.setBackground(new java.awt.Color(51, 51, 51));
         cbPagarCredito.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
@@ -295,18 +298,33 @@ public class ingresoPedidos extends javax.swing.JFrame {
                 cbPagarCreditoActionPerformed(evt);
             }
         });
-        jPanel1.add(cbPagarCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 560, -1, -1));
+        jPanel1.add(cbPagarCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 560, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Tienda");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
+
+        tbfecha.setBackground(new java.awt.Color(255, 255, 255));
+        tbfecha.setForeground(new java.awt.Color(0, 0, 0));
+        tbfecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        jPanel1.add(tbfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 30));
+
+        jLabel20.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("NIT ");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("Fecha");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,6 +364,11 @@ public class ingresoPedidos extends javax.swing.JFrame {
                 anticipo = 0.00;
             } else {
                 anticipo = Double.parseDouble(tbAnticipo.getText());
+            }
+            if (!tbfecha.getText().equals("")) {
+                fecha = LocalDate.parse(tbfecha.getText());
+            } else {
+                fecha = LocalDate.now();
             }
             nit = tclientes.getModel().getValueAt(row, column).toString();
             if (!tbCantidad.getText().equals("") && (!nit.equals("")) && (!cmTienda.getSelectedItem().toString().isEmpty()) && (anticipo >= anticipototal)) {
@@ -607,7 +630,9 @@ public class ingresoPedidos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -625,6 +650,7 @@ public class ingresoPedidos extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField tbCantidad;
     private javax.swing.JTextField tbNIT;
     private javax.swing.JTextField tbProducto;
+    private javax.swing.JFormattedTextField tbfecha;
     private javax.swing.JTable tclientes;
     // End of variables declaration//GEN-END:variables
 }

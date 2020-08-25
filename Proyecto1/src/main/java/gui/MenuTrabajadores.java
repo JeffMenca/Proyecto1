@@ -37,15 +37,16 @@ public class MenuTrabajadores extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        btTiempo = new javax.swing.JButton();
+        btCargar = new javax.swing.JButton();
+        btVentas = new javax.swing.JButton();
+        btUsuarios = new javax.swing.JButton();
+        btTienda = new javax.swing.JButton();
+        btPedidos = new javax.swing.JButton();
+        btProductos = new javax.swing.JButton();
+        btReportes = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        btCambiarTienda = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(233, 150, 254));
 
@@ -69,7 +70,12 @@ public class MenuTrabajadores extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,147 +99,184 @@ public class MenuTrabajadores extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoAzul.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 331, -1));
 
-        jButton5.setBackground(new java.awt.Color(102, 153, 255));
-        jButton5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tiempoentretiendas.png"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btTiempo.setBackground(new java.awt.Color(102, 153, 255));
+        btTiempo.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        btTiempo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tiempoentretiendas.png"))); // NOI18N
+        btTiempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btTiempoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 130, 120));
+        jPanel1.add(btTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 130, 120));
 
-        jButton6.setBackground(new java.awt.Color(102, 153, 255));
-        jButton6.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargarinfo.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btCargar.setBackground(new java.awt.Color(102, 153, 255));
+        btCargar.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
+        btCargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargarinfo.png"))); // NOI18N
+        btCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btCargarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 360, 130, 120));
+        jPanel1.add(btCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 130, 120));
 
-        jButton7.setBackground(new java.awt.Color(102, 153, 255));
-        jButton7.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
-        jButton7.setToolTipText("");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btVentas.setBackground(new java.awt.Color(102, 153, 255));
+        btVentas.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        btVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
+        btVentas.setToolTipText("");
+        btVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btVentasActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 130, 120));
+        jPanel1.add(btVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 130, 120));
 
-        jButton8.setBackground(new java.awt.Color(102, 153, 255));
-        jButton8.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuariosyclientes.png"))); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btUsuarios.setBackground(new java.awt.Color(102, 153, 255));
+        btUsuarios.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        btUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuariosyclientes.png"))); // NOI18N
+        btUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btUsuariosActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 130, 120));
+        jPanel1.add(btUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 200, 130, 120));
 
-        jButton10.setBackground(new java.awt.Color(102, 153, 255));
-        jButton10.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tienda.png"))); // NOI18N
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btTienda.setBackground(new java.awt.Color(102, 153, 255));
+        btTienda.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        btTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tienda.png"))); // NOI18N
+        btTienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btTiendaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 130, 120));
+        jPanel1.add(btTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 130, 120));
 
-        jButton11.setBackground(new java.awt.Color(102, 153, 255));
-        jButton11.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pedidos.png"))); // NOI18N
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btPedidos.setBackground(new java.awt.Color(102, 153, 255));
+        btPedidos.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        btPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pedidos.png"))); // NOI18N
+        btPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btPedidosActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 130, 120));
+        jPanel1.add(btPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 130, 120));
 
-        jButton12.setBackground(new java.awt.Color(102, 153, 255));
-        jButton12.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/productos.png"))); // NOI18N
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        btProductos.setBackground(new java.awt.Color(102, 153, 255));
+        btProductos.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        btProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/productos.png"))); // NOI18N
+        btProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                btProductosActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 130, 120));
+        jPanel1.add(btProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 130, 120));
 
-        jButton13.setBackground(new java.awt.Color(102, 153, 255));
-        jButton13.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportes.png"))); // NOI18N
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        btReportes.setBackground(new java.awt.Color(102, 153, 255));
+        btReportes.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        btReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reportes.png"))); // NOI18N
+        btReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                btReportesActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 130, 120));
+        jPanel1.add(btReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 130, 120));
 
         jLabel9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Menu");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 550));
+        btCambiarTienda.setBackground(new java.awt.Color(102, 153, 255));
+        btCambiarTienda.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
+        btCambiarTienda.setForeground(new java.awt.Color(255, 255, 255));
+        btCambiarTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exportarToHTML.png"))); // NOI18N
+        btCambiarTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCambiarTiendaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btCambiarTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 70, 70));
+
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTiempoActionPerformed
         MenuTiempos ingresarTiempo=new MenuTiempos();
         ingresarTiempo.obtenerTiendaActual(nombre_tienda);
         ingresarTiempo.setVisible(true);
         
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btTiempoActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargarActionPerformed
         CargarArchivos archivos = new CargarArchivos();
         archivos.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btCargarActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVentasActionPerformed
         ingresoVentas ventas=new ingresoVentas();
         ventas.obtenerTiendaActual(nombre_tienda);
         ventas.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btVentasActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUsuariosActionPerformed
         MenuUsuarios ingresousuarios=new MenuUsuarios();
         ingresousuarios.setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btUsuariosActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void btTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTiendaActionPerformed
         MenuTiendas ingresarTienda = new MenuTiendas();
         ingresarTienda.setVisible(true);
 
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_btTiendaActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void btPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPedidosActionPerformed
         MenuPedidos ingresoPedido=new MenuPedidos();
         ingresoPedido.obtenerTiendaActual(nombre_tienda);
         ingresoPedido.setVisible(true);
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_btPedidosActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void btProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProductosActionPerformed
         MenuProductos ingresoproductos=new MenuProductos();
         ingresoproductos.obtenerTiendaActual(nombre_tienda);
         ingresoproductos.setVisible(true);
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_btProductosActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void btReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReportesActionPerformed
         MenuReportes a = new MenuReportes();
         a.obtenerTiendaActual(nombre_tienda);
         a.setVisible(true);
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_btReportesActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        if (nombre_tienda.equals("Cargar datos")) {
+            btTienda.setEnabled(false);
+            btTiempo.setEnabled(false);
+            btProductos.setEnabled(false);
+            btUsuarios.setEnabled(false);
+            btVentas.setEnabled(false);
+            btPedidos.setEnabled(false);
+            btReportes.setEnabled(false);
+        } else {
+            btTienda.setEnabled(true);
+            btTiempo.setEnabled(true);
+            btProductos.setEnabled(true);
+            btUsuarios.setEnabled(true);
+            btVentas.setEnabled(true);
+            btPedidos.setEnabled(true);
+            btReportes.setEnabled(true);
+        }
+    }//GEN-LAST:event_formComponentShown
+
+    private void btCambiarTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCambiarTiendaActionPerformed
+        Trabajadores JframeTrabajadores = new Trabajadores();
+        JframeTrabajadores.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btCambiarTiendaActionPerformed
     public void obtenerTiendaActual(String tienda){
     nombre_tienda=tienda;
     }
@@ -273,14 +316,15 @@ public class MenuTrabajadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton btCambiarTienda;
+    private javax.swing.JButton btCargar;
+    private javax.swing.JButton btPedidos;
+    private javax.swing.JButton btProductos;
+    private javax.swing.JButton btReportes;
+    private javax.swing.JButton btTiempo;
+    private javax.swing.JButton btTienda;
+    private javax.swing.JButton btUsuarios;
+    private javax.swing.JButton btVentas;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel9;

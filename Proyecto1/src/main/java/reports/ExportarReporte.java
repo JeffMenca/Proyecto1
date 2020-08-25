@@ -121,18 +121,21 @@ public class ExportarReporte extends javax.swing.JFrame {
 
     public void CrearArchivo(JTable tabla, String titulo) {
         try {
-            PrintWriter writer = new PrintWriter("Reportes/"+nombre + ".html", "UTF-8");
+            PrintWriter writer = new PrintWriter("Reportes/" + nombre + ".html", "UTF-8");
             writer.println("<html>");
-            writer.println("<h1><center>" + "Intelaf" + "</center</h1>");
-            writer.println("<h2><center>" + " " + "</center</h2>");
-            writer.println("<h3><center>" + titulo + "</center</h3>");
+            writer.println("<h1 style=\"color:white;\"><center>" + "Intelaf" + "</center</h1>");
+            writer.println("<h2 style=\"color:white;\"><center>" + " " + "</center</h2>");
+            writer.println("<h3 style=\"color:white;\"><center>" + titulo + "</center</h3>");
+            writer.println("<body style=\"background-color:#314252 ;\">");
             writer.println("<style type=" + "\"" + "text/css" + "\"" + ">");
             writer.println("table, th, td {");
-            writer.println("border: 1px solid black;");
+            writer.println("border: 3px solid white;");
             writer.println("border-collapse: collapse;");
-            writer.println("background-color: #31FFF5;");
+            writer.println("border-color: #6699FF;");
+            writer.println("background-color: #333333;");
             writer.println("}");
             writer.println(" th, td {");
+            writer.println("color: white;");
             writer.println("padding: 10px;");
             writer.println("text align: center");
             writer.println("}");
@@ -151,6 +154,7 @@ public class ExportarReporte extends javax.swing.JFrame {
                 writer.println("<tr>");
             }
             writer.println("</table>");
+            writer.println("</body>");
             writer.println("</html>");
             writer.close();
         } catch (Exception e) {

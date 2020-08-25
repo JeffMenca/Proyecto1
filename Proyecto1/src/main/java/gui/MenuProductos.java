@@ -46,7 +46,7 @@ public class MenuProductos extends javax.swing.JFrame {
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCeleste.png"))); // NOI18N
-        jPanel13.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 42, 310, -1));
+        jPanel13.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 310, -1));
 
         jPanel14.setBackground(new java.awt.Color(49, 255, 245));
 
@@ -81,26 +81,26 @@ public class MenuProductos extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(51, 51, 51));
         jButton5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Registrar Producto");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/registrarproducto.png"))); // NOI18N
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel13.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 190, 90));
+        jPanel13.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 160, 128));
 
         jButton6.setBackground(new java.awt.Color(51, 51, 51));
         jButton6.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Ver Producto");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verproductos.png"))); // NOI18N
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel13.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 200, 90));
+        jPanel13.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 160, 128));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

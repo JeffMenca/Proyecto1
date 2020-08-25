@@ -79,76 +79,84 @@ public class MenuReportes extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(102, 153, 255));
         jButton5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte2.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 130, 120));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 140, 140));
 
         jButton6.setBackground(new java.awt.Color(102, 153, 255));
         jButton6.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte9.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 130, 120));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 140, 140));
 
         jButton7.setBackground(new java.awt.Color(102, 153, 255));
         jButton7.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte6.png"))); // NOI18N
         jButton7.setToolTipText("");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 130, 120));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 140, 140));
 
         jButton8.setBackground(new java.awt.Color(102, 153, 255));
         jButton8.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte5.png"))); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 130, 120));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, 140, 140));
 
         jButton10.setBackground(new java.awt.Color(102, 153, 255));
         jButton10.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte1.png"))); // NOI18N
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 130, 120));
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 140, 140));
 
         jButton11.setBackground(new java.awt.Color(102, 153, 255));
         jButton11.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte7.png"))); // NOI18N
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 130, 120));
+        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 140, 140));
 
         jButton12.setBackground(new java.awt.Color(102, 153, 255));
         jButton12.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte3.png"))); // NOI18N
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 130, 120));
+        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 140, 140));
 
         jButton13.setBackground(new java.awt.Color(102, 153, 255));
         jButton13.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte8.png"))); // NOI18N
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 130, 120));
+        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 140, 140));
 
         jLabel9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -157,12 +165,13 @@ public class MenuReportes extends javax.swing.JFrame {
 
         jButton9.setBackground(new java.awt.Color(102, 153, 255));
         jButton9.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte4.png"))); // NOI18N
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 130, 120));
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 140, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

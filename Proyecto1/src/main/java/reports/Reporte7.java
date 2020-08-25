@@ -188,14 +188,14 @@ public class Reporte7 extends javax.swing.JFrame {
         btExportar.setBackground(new java.awt.Color(51, 51, 51));
         btExportar.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
         btExportar.setForeground(new java.awt.Color(255, 255, 255));
-        btExportar.setText("Exportar");
+        btExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exportarToHTML.png"))); // NOI18N
         btExportar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
         btExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExportarActionPerformed(evt);
             }
         });
-        jPanel1.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 80, 40));
+        jPanel1.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 80, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,8 +218,10 @@ public class Reporte7 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (!tbInicio.getText().equals("") && !tbfinal.getText().equals(""))
             cargarTabla2();
-        else
+        else{
             JOptionPane.showMessageDialog(null, "Debe ingresar un intervalo de tiempo");
+            cargarTabla();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed

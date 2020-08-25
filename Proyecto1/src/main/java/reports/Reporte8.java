@@ -189,14 +189,15 @@ public class Reporte8 extends javax.swing.JFrame {
         btExportar.setBackground(new java.awt.Color(51, 51, 51));
         btExportar.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
         btExportar.setForeground(new java.awt.Color(255, 255, 255));
-        btExportar.setText("Exportar");
+        btExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exportarToHTML.png"))); // NOI18N
+        btExportar.setToolTipText("");
         btExportar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
         btExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExportarActionPerformed(evt);
             }
         });
-        jPanel1.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 80, 40));
+        jPanel1.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 80, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
