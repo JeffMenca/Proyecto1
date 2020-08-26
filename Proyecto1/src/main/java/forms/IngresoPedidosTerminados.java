@@ -187,7 +187,7 @@ public class IngresoPedidosTerminados extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 11)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("(año,mes,dia)");
+        jLabel16.setText("(año-mes-dia)");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         tbfecha.setBackground(new java.awt.Color(255, 255, 255));

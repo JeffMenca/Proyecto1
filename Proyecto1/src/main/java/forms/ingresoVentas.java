@@ -24,12 +24,12 @@ import javax.swing.table.DefaultTableModel;
  * @author jeffrey
  */
 public class ingresoVentas extends javax.swing.JFrame {
+
     public static String nombre_tienda;
     public DefaultTableModel modelcarrito = new DefaultTableModel();
-    public String nit="";
+    public String nit = "";
     public LocalDate fecha = LocalDate.now();
-    
-    
+
     /**
      * Creates new form ingresoPedidos
      */
@@ -38,7 +38,6 @@ public class ingresoVentas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.pack();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -327,12 +326,12 @@ public class ingresoVentas extends javax.swing.JFrame {
         cargarTabla2();
         listenerTBnit();
         listenerTBproducto();
-        modelcarrito=new DefaultTableModel(){
-                @Override
-                public boolean isCellEditable(int row, int column) {
+        modelcarrito = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
                 return false;
-                }
-           };
+            }
+        };
         modelcarrito.addColumn("Cantidad");
         modelcarrito.addColumn("Codigo");
         modelcarrito.addColumn("Producto");
@@ -340,11 +339,11 @@ public class ingresoVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void tbNITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbNITKeyTyped
-        
+
     }//GEN-LAST:event_tbNITKeyTyped
 
     private void tbNITKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbNITKeyPressed
-        
+
     }//GEN-LAST:event_tbNITKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -352,109 +351,110 @@ public class ingresoVentas extends javax.swing.JFrame {
             int column = 0;
             int row = tclientes.getSelectedRow();
             nit = tclientes.getModel().getValueAt(row, column).toString();
-            
-                if (!tbCantidad.getText().equals("")&&(!nit.equals(""))) {
-                    column = 3;
+
+            if (!tbCantidad.getText().equals("") && (!nit.equals(""))) {
+                column = 3;
+                row = tProducto.getSelectedRow();
+                int cantidadProductos = Integer.parseInt(tProducto.getModel().getValueAt(row, column).toString());
+                int cantidadpedida = Integer.parseInt(tbCantidad.getText());
+                if ((cantidadProductos > 0) && (cantidadpedida <= cantidadProductos)) {
+                    tclientes.setEnabled(false);
+                    column = 0;
                     row = tProducto.getSelectedRow();
-                    int cantidadProductos =Integer.parseInt(tProducto.getModel().getValueAt(row, column).toString());
-                    int cantidadpedida=Integer.parseInt(tbCantidad.getText());
-                    if ((cantidadProductos > 0)&&(cantidadpedida<=cantidadProductos)) {
-                        tclientes.setEnabled(false);
-                        column = 0;
-                        row = tProducto.getSelectedRow();
-                        String value3 = tProducto.getModel().getValueAt(row, column).toString();
-                        column = 1;
-                        row = tProducto.getSelectedRow();
-                        String value = tProducto.getModel().getValueAt(row, column).toString();
-                        column = 2;
-                        String value2 = tProducto.getModel().getValueAt(row, column).toString();
-                        tcarrito.setModel(modelcarrito);
-                        modelcarrito.addRow(new Object[]{tbCantidad.getText(), value3, value, value2});
-                        sumartotal();
-                        column = 0;
-                        row = tProducto.getSelectedRow();
-                        String codigoProductoAgregado = tProducto.getModel().getValueAt(row, column).toString();
-                        cantidadProductos-=cantidadpedida;
-                        String query = ("UPDATE PRODUCTO SET cantidad = '"+cantidadProductos+"' WHERE codigo='"+codigoProductoAgregado+"'");
-                        DbConnection a = new DbConnection();
-                        a.Insert(query);
-                        cargarTabla2();
-                    }
-                    else {
+                    String value3 = tProducto.getModel().getValueAt(row, column).toString();
+                    column = 1;
+                    row = tProducto.getSelectedRow();
+                    String value = tProducto.getModel().getValueAt(row, column).toString();
+                    column = 2;
+                    String value2 = tProducto.getModel().getValueAt(row, column).toString();
+                    tcarrito.setModel(modelcarrito);
+                    modelcarrito.addRow(new Object[]{tbCantidad.getText(), value3, value, value2});
+                    sumartotal();
+                    column = 0;
+                    row = tProducto.getSelectedRow();
+                    String codigoProductoAgregado = tProducto.getModel().getValueAt(row, column).toString();
+                    cantidadProductos -= cantidadpedida;
+                    String query = ("UPDATE PRODUCTO SET cantidad = '" + cantidadProductos + "' WHERE codigo='" + codigoProductoAgregado + "'");
+                    DbConnection a = new DbConnection();
+                    a.Insert(query);
+                    cargarTabla2();
+                } else {
                     JOptionPane.showMessageDialog(null, "El producto no esta en existencia, debe realizar un pedido");
                 }
 
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar la cantidad que desea del producto");
+            }
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar la cantidad que desea del producto");
-                }
-            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un NIT/Cliente");
         }
-        
-       
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        
-        if (tcarrito.getRowCount()>0) {
-            int row;
-            Double total= Double.parseDouble(lbtotal.getText());
-            if (cbPagarCredito.isSelected()==true) {
-                row = tclientes.getSelectedRow();
-                Double credito = Double.parseDouble(tclientes.getModel().getValueAt(row, 2).toString());
-                if (credito>=total) {
-                    credito-=total;
-                    String query = ("UPDATE CLIENTE SET credito = '" + credito + "' WHERE NIT='" + nit + "'");
-                    DbConnection a = new DbConnection();
-                    a.Insert(query);
-                } else {
-                    Double totalNuevo = total - credito;
-                    credito = 0.00;
-                    JOptionPane.showMessageDialog(null, "Su credito no es suficiente, debera pagar en efectivo " + totalNuevo);
-                    String query = ("UPDATE CLIENTE SET credito = '" + credito + "' WHERE NIT='" + nit + "'");
-                    DbConnection a = new DbConnection();
-                    a.Insert(query);
+        try {
+            if (tcarrito.getRowCount() > 0) {
+                int row;
+                Double total = Double.parseDouble(lbtotal.getText());
+                if (cbPagarCredito.isSelected() == true) {
+                    row = tclientes.getSelectedRow();
+                    Double credito = Double.parseDouble(tclientes.getModel().getValueAt(row, 2).toString());
+                    if (credito >= total) {
+                        credito -= total;
+                        String query = ("UPDATE CLIENTE SET credito = '" + credito + "' WHERE NIT='" + nit + "'");
+                        DbConnection a = new DbConnection();
+                        a.Insert(query);
+                    } else {
+                        Double totalNuevo = total - credito;
+                        credito = 0.00;
+                        JOptionPane.showMessageDialog(null, "Su credito no es suficiente, debera pagar en efectivo " + totalNuevo);
+                        String query = ("UPDATE CLIENTE SET credito = '" + credito + "' WHERE NIT='" + nit + "'");
+                        DbConnection a = new DbConnection();
+                        a.Insert(query);
+                    }
                 }
+
+                String query = ("INSERT INTO FACTURA VALUES('" + 0 + "','" + fecha + "','" + total + "','" + nit + "','" + nombre_tienda + "')");
+                DbConnection a = new DbConnection();
+                int codigofactura = a.InsertVenta(query);
+                JOptionPane.showMessageDialog(null, "Se realizo su compra y su factura correctamente");
+                cargarTabla1();
+                tclientes.setEnabled(true);
+
+                for (int i = 0; i < tcarrito.getRowCount(); i++) {
+                    int cantidad = Integer.parseInt(tcarrito.getModel().getValueAt(i, 0).toString());
+                    Double precio = Double.parseDouble(tcarrito.getModel().getValueAt(i, 3).toString());
+                    String codigoproducto = tcarrito.getModel().getValueAt(i, 1).toString();
+                    try {
+                        query = ("INSERT INTO VENTA VALUES('" + 0 + "','" + cantidad + "','" + precio + "','" + codigoproducto + "','" + codigofactura + "')");
+                        a = new DbConnection();
+                        a.Insert(query);
+                    } catch (Exception e) {
+                    }
+
+                }
+                modelcarrito = new DefaultTableModel() {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                modelcarrito.addColumn("Cantidad");
+                modelcarrito.addColumn("Codigo");
+                modelcarrito.addColumn("Producto");
+                modelcarrito.addColumn("Precio");
+                tcarrito.setModel(modelcarrito);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe ingresar por lo menos un producto");
             }
-
-            String query = ("INSERT INTO FACTURA VALUES('" + 0 + "','" + fecha + "','" + total + "','" + nit + "','" + nombre_tienda + "')");
-            DbConnection a = new DbConnection();
-            int codigofactura = a.InsertVenta(query);
-            JOptionPane.showMessageDialog(null, "Se realizo su compra y su factura correctamente");
-            cargarTabla1();
-            tclientes.setEnabled(true);
-
-            for (int i = 0; i < tcarrito.getRowCount(); i++) {
-                int cantidad = Integer.parseInt(tcarrito.getModel().getValueAt(i, 0).toString());
-                Double precio = Double.parseDouble(tcarrito.getModel().getValueAt(i, 3).toString());
-                String codigoproducto = tcarrito.getModel().getValueAt(i, 1).toString();
-                try {
-                    query = ("INSERT INTO VENTA VALUES('" + 0 + "','" + cantidad + "','" + precio + "','" + codigoproducto + "','" + codigofactura + "')");
-                    a = new DbConnection();
-                    a.Insert(query);
-                } catch (Exception e) {
-                }
-                
-            }
-            modelcarrito = new DefaultTableModel() {
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false;
-                }
-            };
-            modelcarrito.addColumn("Cantidad");
-            modelcarrito.addColumn("Codigo");
-            modelcarrito.addColumn("Producto");
-            modelcarrito.addColumn("Precio");
-            tcarrito.setModel(modelcarrito);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Debe ingresar por lo menos un producto");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No tiene nada en el carrito");
         }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void cbPagarCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPagarCreditoActionPerformed
@@ -462,43 +462,44 @@ public class ingresoVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_cbPagarCreditoActionPerformed
     public void obtenerTiendaActual(String tienda) {
         nombre_tienda = tienda;
-        
+
     }
-    public void sumartotal(){
-        double t=0;
-        double p=0;
-        int rowscount=tcarrito.getRowCount();
+
+    public void sumartotal() {
+        double t = 0;
+        double p = 0;
+        int rowscount = tcarrito.getRowCount();
         if (tcarrito.getRowCount() > 0) {
             for (int i = 0; i < rowscount; i++) {
-                p=Double.parseDouble(tcarrito.getValueAt(i, 3).toString());
-                p*=Double.parseDouble(tcarrito.getValueAt(i, 0).toString());
-                t+=p;
+                p = Double.parseDouble(tcarrito.getValueAt(i, 3).toString());
+                p *= Double.parseDouble(tcarrito.getValueAt(i, 0).toString());
+                t += p;
             }
         }
         lbtotal.setText(String.valueOf(t));
-        
+
     }
-    public void cargarTabla1(){
-        String filter=tbNIT.getText();
-        String where="";
+
+    public void cargarTabla1() {
+        String filter = tbNIT.getText();
+        String where = "";
         if (!filter.equals("")) {
-            where=" WHERE NIT LIKE '%"+filter+"%'";
+            where = " WHERE NIT LIKE '%" + filter + "%'";
+        } else {
+            where = "";
         }
-        else{
-           where=""; 
-        }
-        DefaultTableModel model=new DefaultTableModel();
-        model=new DefaultTableModel(){
-                @Override
-                public boolean isCellEditable(int row, int column) {
+        DefaultTableModel model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
                 return false;
-                }
-           };
+            }
+        };
         tclientes.setModel(model);
-        String Query = "SELECT NIT, nombre, credito FROM CLIENTE"+ where;
-        DbConnection a = new DbConnection(); 
+        String Query = "SELECT NIT, nombre, credito FROM CLIENTE" + where;
+        DbConnection a = new DbConnection();
         ResultSet Result = a.SelectOnComboBox(Query);
- 
+
         try {
             ResultSetMetaData ResultMd = Result.getMetaData();
             int columnscount = ResultMd.getColumnCount();
@@ -517,27 +518,27 @@ public class ingresoVentas extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    public void cargarTabla2(){
-        String filter=tbProducto.getText();
-        String where="";
+
+    public void cargarTabla2() {
+        String filter = tbProducto.getText();
+        String where = "";
         if (!filter.equals("")) {
-            where=" WHERE codigo_tienda= '"+nombre_tienda+"' && nombre LIKE '%"+filter+"%'";
+            where = " WHERE codigo_tienda= '" + nombre_tienda + "' && nombre LIKE '%" + filter + "%'";
+        } else {
+            where = " WHERE codigo_tienda= '" + nombre_tienda + "'";
         }
-        else{
-           where=" WHERE codigo_tienda= '"+nombre_tienda+"'"; 
-        }
-        DefaultTableModel model=new DefaultTableModel();
-        model= new DefaultTableModel(){
-                @Override
-                public boolean isCellEditable(int row, int column) {
+        DefaultTableModel model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
                 return false;
-                }
-           };
+            }
+        };
         tProducto.setModel(model);
-        String Query = "SELECT codigo, nombre, precio, cantidad FROM PRODUCTO"+ where;
-        DbConnection a = new DbConnection(); 
+        String Query = "SELECT codigo, nombre, precio, cantidad FROM PRODUCTO" + where;
+        DbConnection a = new DbConnection();
         ResultSet Result = a.SelectOnComboBox(Query);
- 
+
         try {
             ResultSetMetaData ResultMd = Result.getMetaData();
             int columnscount = ResultMd.getColumnCount();
@@ -558,11 +559,11 @@ public class ingresoVentas extends javax.swing.JFrame {
         }
     }
 
-    public void listenerTBnit(){
+    public void listenerTBnit() {
         tbNIT.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent de) {
-               cargarTabla1();
+                cargarTabla1();
             }
 
             @Override
@@ -576,11 +577,12 @@ public class ingresoVentas extends javax.swing.JFrame {
             }
         });
     }
-    public void listenerTBproducto(){
+
+    public void listenerTBproducto() {
         tbProducto.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent de) {
-               cargarTabla2();
+                cargarTabla2();
             }
 
             @Override
@@ -594,8 +596,7 @@ public class ingresoVentas extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */

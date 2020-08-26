@@ -160,12 +160,12 @@ public class Reporte7 extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Fecha Final (año,mes,dia)");
+        jLabel2.setText("Fecha Final (año-mes-dia)");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Fecha Inicio (año,mes,dia)");
+        jLabel3.setText("Fecha Inicio (año-mes-dia)");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, -1, -1));
 
         tbInicio.setBackground(new java.awt.Color(255, 255, 255));

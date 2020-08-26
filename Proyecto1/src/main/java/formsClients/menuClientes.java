@@ -98,7 +98,7 @@ public class menuClientes extends javax.swing.JFrame {
                 btCambiarTiendaActionPerformed(evt);
             }
         });
-        jPanel1.add(btCambiarTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 90, 80));
+        jPanel1.add(btCambiarTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 90, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,7 +126,8 @@ public class menuClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btCambiarTiendaActionPerformed
 
     private void btTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTiempoActionPerformed
-        
+        rastreoPedidos a=new rastreoPedidos();
+        a.setVisible(true);
     }//GEN-LAST:event_btTiempoActionPerformed
 
     /**

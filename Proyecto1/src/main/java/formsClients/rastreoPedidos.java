@@ -3,27 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reports;
+package formsClients;
 
 import DBsql.DbConnection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static reports.Reporte3.nombre_tienda;
 
 /**
  *
  * @author jeffrey
  */
-public class Reporte3 extends javax.swing.JFrame {
+public class rastreoPedidos extends javax.swing.JFrame {
     
-    public static String nombre_tienda;
+    
     public LocalDate fecha = LocalDate.now();
     /**
-     * Creates new form Reporte3
+     * Creates new form rastreoPedidos
      */
-    public Reporte3() {
+    public rastreoPedidos() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.pack();
@@ -45,7 +47,13 @@ public class Reporte3 extends javax.swing.JFrame {
         tReporte1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        btExportar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        tbpedido = new javax.swing.JTextField();
+        btBuscar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        tbDias = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        tbTotal = new javax.swing.JTextField();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -57,13 +65,13 @@ public class Reporte3 extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCeleste.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 25, 310, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoMorado.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 310, -1));
 
-        lbTitulo.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 21)); // NOI18N
+        lbTitulo.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 27)); // NOI18N
         lbTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lbTitulo.setText("Pedidos atrasados que llegarán a la tienda");
-        jPanel1.add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+        lbTitulo.setText("Rastreo de pedidos");
+        jPanel1.add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
 
         tReporte1.setBackground(new java.awt.Color(255, 255, 255));
         tReporte1.setForeground(new java.awt.Color(0, 0, 0));
@@ -116,7 +124,7 @@ public class Reporte3 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tReporte1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 824, 240));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 824, 260));
 
         jPanel2.setBackground(new java.awt.Color(49, 255, 245));
 
@@ -133,7 +141,7 @@ public class Reporte3 extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 240, -1, -1));
 
-        jPanel3.setBackground(new java.awt.Color(49, 255, 245));
+        jPanel3.setBackground(new java.awt.Color(229, 151, 253));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -146,20 +154,49 @@ public class Reporte3 extends javax.swing.JFrame {
             .addGap(0, 23, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 935, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 1170, -1));
 
-        btExportar.setBackground(new java.awt.Color(51, 51, 51));
-        btExportar.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
-        btExportar.setForeground(new java.awt.Color(255, 255, 255));
-        btExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exportarToHTML.png"))); // NOI18N
-        btExportar.setToolTipText("");
-        btExportar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
-        btExportar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Codigo del pedido");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 160, -1, -1));
+
+        tbpedido.setBackground(new java.awt.Color(255, 255, 255));
+        tbpedido.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
+        tbpedido.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbpedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 190, 240, 30));
+
+        btBuscar.setBackground(new java.awt.Color(51, 51, 51));
+        btBuscar.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 12)); // NOI18N
+        btBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btBuscar.setText("Buscar");
+        btBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(229, 151, 253), 3, true));
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExportarActionPerformed(evt);
+                btBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, 90, 100));
+        jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 240, 100, 50));
+
+        jLabel4.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Dias restante de llegada");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 310, -1, -1));
+
+        tbDias.setBackground(new java.awt.Color(255, 255, 255));
+        tbDias.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
+        tbDias.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 340, 240, 30));
+
+        jLabel5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Total por pagar");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 390, -1, -1));
+
+        tbTotal.setBackground(new java.awt.Color(255, 255, 255));
+        tbTotal.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
+        tbTotal.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 420, 240, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,28 +206,26 @@ public class Reporte3 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        cargarTabla2();
-        lbTitulo.setText("Pedidos atrasados que llegarán a la tienda "+nombre_tienda);
+        
     }//GEN-LAST:event_formComponentShown
 
-    private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed
-        ExportarReporte exportar=new ExportarReporte();
-        exportar.tablaexportada.setModel(tReporte1.getModel());
-        exportar.titulo="Pedidos atrasados que llegarán a la tienda "+nombre_tienda;
-        exportar.setVisible(true);
-    }//GEN-LAST:event_btExportarActionPerformed
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        if (!tbpedido.getText().equals("")) {
+            cargarTabla2();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el codigo del pedido");
+        }
+    }//GEN-LAST:event_btBuscarActionPerformed
     
      public void cargarTabla2(){
-     
-        
-        String where=""; 
+    
         DefaultTableModel model=new DefaultTableModel();
         model= new DefaultTableModel(){
                 @Override
@@ -198,55 +233,63 @@ public class Reporte3 extends javax.swing.JFrame {
                 return false;
                 }
            };
-        tReporte1.setModel(model);
-        String Query = "SELECT p.*,t.tiempo FROM PEDIDO p INNER JOIN TIEMPO_ENTRE_TIENDAS t ON ((p.codigo_tiendaorigen= t.tienda_origen)&&(p.codigo_tiendadestino=t.tienda_destino)||(p.codigo_tiendaorigen= t.tienda_destino)&&(p.codigo_tiendadestino=t.tienda_origen)) LEFT JOIN RECIBO r ON p.codigo = r.codigo_pedido WHERE r.ID IS NULL && p.codigo_tiendadestino= '"+nombre_tienda+"'";
-        DbConnection a = new DbConnection(); 
-        ResultSet Result = a.Select(Query);
-       
- 
+         tReporte1.setModel(model);
+         String Query = "SELECT p.codigo,p.fecha,p.total,p.anticipo,p.codigo_tiendaorigen,ti.nombre,pro.nombre,t.tiempo FROM PEDIDO p LEFT"
+                 + " JOIN RECIBO r ON p.codigo = r.codigo_pedido INNER JOIN TIENDA ti ON ti.codigo=p.codigo_tiendadestino"
+                 + " INNER JOIN TIEMPO_ENTRE_TIENDAS t ON ((p.codigo_tiendaorigen= t.tienda_origen)&&(p.codigo_tiendadestino=t.tienda_destino)||(p.codigo_tiendaorigen= t.tienda_destino)&&(p.codigo_tiendadestino=t.tienda_origen)) INNER JOIN PRODUCTO pro ON pro.codigo=p.codigo_producto WHERE r.ID IS NULL && p.codigo ='" +tbpedido.getText()+"'";
+         DbConnection a = new DbConnection();
+         ResultSet Result = a.Select(Query);
+
+
         try {
             ResultSetMetaData ResultMd = Result.getMetaData();
             int columnscount = ResultMd.getColumnCount();
             model.addColumn("Codigo");
             model.addColumn("Fecha");
-            model.addColumn("Cantidad");
             model.addColumn("Total");
             model.addColumn("Anticipo");
-            model.addColumn("Codigo producto");
-            model.addColumn("Codigo cliente");
-            model.addColumn("Tienda origen");
-            model.addColumn("TIenda destino");
-            model.addColumn("Tiempo");
+            model.addColumn("Se pidio en");
+            model.addColumn("Recoger en");
+            model.addColumn("Producto");
+            model.addColumn("Tiempo de llegada");
+ 
             while (Result.next()) {
                 Object[] rows = new Object[columnscount];
-                if (ATiempo(Result.getString("Fecha"),Result.getString("Tiempo"))==false) {
-                    for (int i = 0; i < columnscount; i++) {
+               tbDias.setText(ATiempo(Result.getString("Fecha"),Result.getString("Tiempo")));
+               tbTotal.setText(ATotal(Result.getString("Total"),Result.getString("Anticipo")));
+                for (int i = 0; i < columnscount; i++) {
                     rows[i] = Result.getObject(i + 1);
+
                 }
-                    model.addRow(rows);
-                }
+                model.addRow(rows);
 
             }
 
         } catch (Exception e) {
         }
     }
-    
-    public Boolean ATiempo(String fechapedido, String tiempo) {
+     
+    public String ATiempo(String fechapedido, String tiempo) {
         LocalDate fechaDelPedido = LocalDate.parse(fechapedido);
         long diasdiferencia = DAYS.between(fechaDelPedido, fecha);
         int tiempototal = (int) diasdiferencia;
         int tiempoEnvio = Integer.parseInt(tiempo);
         if (tiempoEnvio < tiempototal) {
-            return false;
+            return String.valueOf(tiempototal-tiempoEnvio);
         } else {
-            return true;
+            return "0";
+        }
+    }
+    public String ATotal(String total, String anticipo) {
+        Double canttotal = Double.parseDouble(total);
+        Double cantanticipo = Double.parseDouble(anticipo);
+        if (cantanticipo < canttotal) {
+            return String.valueOf(canttotal-cantanticipo);
+        } else {
+            return "0";
         }
     }
 
-    public void obtenerTiendaActual(String tienda) {
-        nombre_tienda = tienda;
-    }
     
     /**
      * @param args the command line arguments
@@ -265,32 +308,38 @@ public class Reporte3 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reporte3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rastreoPedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reporte3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rastreoPedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reporte3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rastreoPedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reporte3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rastreoPedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reporte3().setVisible(true);
+                new rastreoPedidos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btExportar;
+    private javax.swing.JButton btBuscar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JTable tReporte1;
+    private javax.swing.JTextField tbDias;
+    private javax.swing.JTextField tbTotal;
+    private javax.swing.JTextField tbpedido;
     // End of variables declaration//GEN-END:variables
 }

@@ -185,11 +185,11 @@ public class ingresoPedidos extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Total: ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, -1, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 530, -1, 30));
 
         jLabel15.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("(año,mes,dia)");
+        jLabel15.setText("(año-mes-dia)");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         tbNIT.setBackground(new java.awt.Color(255, 255, 255));
@@ -402,8 +402,9 @@ public class ingresoPedidos extends javax.swing.JFrame {
                     String query = ("INSERT INTO PEDIDO VALUES('" + 0 + "','" + fecha + "','" + Integer.parseInt(tbCantidad.getText())
                             + "','" + Double.parseDouble(lbTotal.getText()) + "','" + anticipo + "','" + codigoProducto + "','" + nit + "','" + cmTienda.getSelectedItem().toString() + "','" + nombre_tienda + "')");
                     DbConnection a = new DbConnection();
-                    a.Insert(query);
+                    int dato=a.InsertVenta(query);
                     JOptionPane.showMessageDialog(null, "Pedido ingresado correctamente");
+                    JOptionPane.showMessageDialog(null, "EL codigo de su pedido es "+String.valueOf(dato));
                 } else {
                     JOptionPane.showMessageDialog(null, "No existen tantas existencias de ese producto en la tienda seleccionada");
                 }

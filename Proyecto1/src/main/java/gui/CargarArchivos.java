@@ -291,6 +291,7 @@ public class CargarArchivos extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No puede cargar datos, la base de datos no esta vacia");
             jButton2.setEnabled(false);
+            jButton3.setEnabled(false);
         }
     }
 

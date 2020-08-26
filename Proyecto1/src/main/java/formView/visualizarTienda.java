@@ -62,7 +62,6 @@ public class visualizarTienda extends javax.swing.JFrame {
         tTiendas = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        Cargar1 = new javax.swing.JButton();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -173,14 +172,14 @@ public class visualizarTienda extends javax.swing.JFrame {
         Cargar.setBackground(new java.awt.Color(102, 102, 102));
         Cargar.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         Cargar.setForeground(new java.awt.Color(255, 255, 255));
-        Cargar.setText("Editar");
+        Cargar.setText("Cargar");
         Cargar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
         Cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CargarActionPerformed(evt);
             }
         });
-        jPanel1.add(Cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 470, 110, 40));
+        jPanel1.add(Cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, 110, 40));
 
         tbtelefono1.setBackground(new java.awt.Color(255, 255, 255));
         tbtelefono1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 0, 12)); // NOI18N
@@ -262,18 +261,6 @@ public class visualizarTienda extends javax.swing.JFrame {
         jLabel17.setText("Codigo de tienda/ Nombre");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
-        Cargar1.setBackground(new java.awt.Color(102, 102, 102));
-        Cargar1.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        Cargar1.setForeground(new java.awt.Color(255, 255, 255));
-        Cargar1.setText("Cargar");
-        Cargar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 255, 245), 3));
-        Cargar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cargar1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Cargar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 500, 110, 40));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -333,10 +320,6 @@ public class visualizarTienda extends javax.swing.JFrame {
         cargarTabla2();
         listenertbTienda();
     }//GEN-LAST:event_formComponentShown
-
-    private void Cargar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cargar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Cargar1ActionPerformed
 
     public void cargarTabla2(){
         String filter=tbTienda.getText();
@@ -437,7 +420,6 @@ public class visualizarTienda extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cargar;
-    private javax.swing.JButton Cargar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
