@@ -5,6 +5,7 @@
  */
 package formsClients;
 
+import gui.MainFrame;
 import gui.Trabajadores;
 
 /**
@@ -65,7 +66,7 @@ public class menuClientes extends javax.swing.JFrame {
 
         btTiempo.setBackground(new java.awt.Color(229, 151, 253));
         btTiempo.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        btTiempo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tiempoentretiendas.png"))); // NOI18N
+        btTiempo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Rastreo.png"))); // NOI18N
         btTiempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btTiempoActionPerformed(evt);
@@ -75,7 +76,7 @@ public class menuClientes extends javax.swing.JFrame {
 
         btTienda.setBackground(new java.awt.Color(229, 151, 253));
         btTienda.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
-        btTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tienda.png"))); // NOI18N
+        btTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catalogo.png"))); // NOI18N
         btTienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btTiendaActionPerformed(evt);
@@ -91,13 +92,13 @@ public class menuClientes extends javax.swing.JFrame {
         btCambiarTienda.setBackground(new java.awt.Color(229, 151, 253));
         btCambiarTienda.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
         btCambiarTienda.setForeground(new java.awt.Color(255, 255, 255));
-        btCambiarTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exportarToHTML.png"))); // NOI18N
+        btCambiarTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/volvermenu.png"))); // NOI18N
         btCambiarTienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCambiarTiendaActionPerformed(evt);
             }
         });
-        jPanel1.add(btCambiarTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 70, 70));
+        jPanel1.add(btCambiarTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 90, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,8 +120,8 @@ public class menuClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btTiendaActionPerformed
 
     private void btCambiarTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCambiarTiendaActionPerformed
-        Trabajadores JframeTrabajadores = new Trabajadores();
-        JframeTrabajadores.setVisible(true);
+        MainFrame a=new MainFrame();
+        a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btCambiarTiendaActionPerformed
 

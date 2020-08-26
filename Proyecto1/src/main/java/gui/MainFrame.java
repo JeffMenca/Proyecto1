@@ -52,7 +52,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(49, 66, 82));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoAzul.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCeleste.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -76,7 +76,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(102, 153, 255));
+        jButton5.setBackground(new java.awt.Color(229, 151, 253));
         jButton5.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 15)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clientes.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {

@@ -188,13 +188,13 @@ public class MenuTrabajadores extends javax.swing.JFrame {
         btCambiarTienda.setBackground(new java.awt.Color(102, 153, 255));
         btCambiarTienda.setFont(new java.awt.Font("Droid Sans Mono Slashed", 1, 13)); // NOI18N
         btCambiarTienda.setForeground(new java.awt.Color(255, 255, 255));
-        btCambiarTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exportarToHTML.png"))); // NOI18N
+        btCambiarTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cambiartienda.png"))); // NOI18N
         btCambiarTienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCambiarTiendaActionPerformed(evt);
             }
         });
-        jPanel1.add(btCambiarTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 70, 70));
+        jPanel1.add(btCambiarTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 90, 90));
 
         getContentPane().add(jPanel1);
 
